@@ -7,6 +7,10 @@
 This is an open source extension library to [OpenUI5](https://github.com/SAP/openui5).
 It contains a couple of UI5 libraries with additional useful controls.
 
+### List of libraries
+
+ - [sap.suite.statusindicator](src/statusindicator/README.md) - A set of components for displaying animated KPIs.
+
 ## Requirements
 
 - [Node.js](https://nodejs.org/) (**version 8.5 or higher**)
