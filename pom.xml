@@ -45,6 +45,7 @@
 
   <modules>
     <module>src/statusindicator</module>
+    <module>src/controls</module>
     <module>testsuite</module>
   </modules>
 

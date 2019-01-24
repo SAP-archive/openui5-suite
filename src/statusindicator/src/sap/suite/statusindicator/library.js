@@ -5,10 +5,8 @@
 /**
  * Initialization Code and shared classes of library sap.suite.statusindicator.
  */
-sap.ui.define(['jquery.sap.global', 'sap/ui/core/library'],
-	function(jQuery, library1) {
+sap.ui.define([], function () {
 	"use strict";
-
 
 	/**
 	 * UI5 library: sap.suite.statusindicator.
@@ -18,14 +16,13 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/library'],
 	 * @public
 	 */
 
-	// library dependencies
-
 	// delegate further initialization of this library to the Core
 	sap.ui.getCore().initLibrary({
-		name : "sap.suite.statusindicator",
-		dependencies : ["sap.ui.core"],
+		name: "sap.suite.statusindicator",
+		dependencies: ["sap.ui.core"],
 		types: [
-			"sap.suite.statusindicator.ExampleType"
+			"sap.suite.statusindicator.FillingType",
+			"sap.suite.statusindicator.FillingDirectionType"
 		],
 		interfaces: [],
 		controls: [
@@ -36,27 +33,99 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/library'],
 		version: "${version}"
 	});
 
+	/**
+	 * The type of filling.
+	 *
+	 * @public
+	 * @enum {string}
+	 */
+	sap.suite.statusindicator.FillingType = {
+
+		/**
+		 * The shape is filled with a linear gradient.
+		 *
+		 * @public
+		 */
+		Linear: "Linear",
+
+		/**
+		 * The shape is filled with a radial gradient.
+		 */
+		Radial: "Radial",
+
+		/**
+		 * Clockwise or counterclockwise circular filling is applied.
+		 *
+		 * <p>
+		 * For details, see {@link sap.suite.ui.commons.statusindicator.FillingDirectionType}.
+		 * </p>
+		 *
+		 * @public
+		 */
+		Circular: "Circular",
+
+		/**
+		 * No filling is applied.
+		 *
+		 * @public
+		 */
+		None: "None"
+	};
 
 	/**
-	 * Example type.
+	 * The direction of animation.<br>
 	 *
-	 * @enum {string}
+	 * The direction types <code>Up</code>, <code>Down</code>, <code>Left</code>, and <code>Right</code> are available when
+	 * {@link sap.suite.ui.commons.statusindicator.FillingType} is set to <code>Linear</code>.<br>
+	 * The direction types <code>Clockwise</code> and <code>Counterclockwise</code> are available when
+	 * {@link sap.suite.ui.commons.statusindicator.FillingType} is set to <code>Circular</code>.
+	 *
 	 * @public
+	 * @enum {string}
 	 */
-	sap.suite.statusindicator.ExampleType = {
+	sap.suite.statusindicator.FillingDirectionType = {
 
 		/**
-		 * A value.
+		 * From bottom upwards.
+		 *
 		 * @public
 		 */
-		Value1 : "Value1",
+		Up: "Up",
 
 		/**
-		 * Another value.
+		 * From top to bottom.
+		 *
 		 * @public
 		 */
-		Value2 : "Value2"
+		Down: "Down",
 
+		/**
+		 * From right to left.
+		 *
+		 * @public
+		 */
+		Left: "Left",
+
+		/**
+		 * From left to right.
+		 *
+		 * @public
+		 */
+		Right: "Right",
+
+		/**
+		 * Clockwise.
+		 *
+		 * @public
+		 */
+		Clockwise: "Clockwise",
+
+		/**
+		 * Counterclockwise.
+		 *
+		 * @public
+		 */
+		CounterClockwise: "CounterClockwise"
 	};
 
 
