@@ -3,27 +3,27 @@
  */
 
 sap.ui.define([
-	"../library",
-	"sap/suite/ui/commons/util/HtmlElement",
+	"./library",
+	"sap/suite/controls/util/HtmlElement",
 	"sap/ui/core/Renderer"
 ], function (library, HtmlElement, Renderer) {
 	"use strict";
 
-	var FillingType = library.statusindicator.FillingType;
+	var FillingType = library.FillingType;
 
 	/**
 	 * StatusIndicator renderer.
 	 * @namespace
 	 * @extends sap.ui.core.Renderer
 	 */
-	var SimpleShapeRenderer = Renderer.extend("sap.suite.ui.commons.statusindicator.SimpleShapeRenderer");
+	var SimpleShapeRenderer = Renderer.extend("sap.suite.statusindicator.SimpleShapeRenderer");
 
 	/**
 	 * Renders the HTML for the given control, using the provided {@link sap.ui.core.RenderManager}.
 	 *
 	 * @param {sap.ui.core.RenderManager} oRm
 	 *            The RenderManager that can be used for writing to the render output buffer.
-	 * @param {sap.suite.ui.commons.StatusIndicator} oControl
+	 * @param {sap.suite.statusindicator.StatusIndicator} oControl
 	 *            An object representation of the control that should be rendered.
 	 */
 	SimpleShapeRenderer.render = function (oRm, oControl) {
@@ -34,7 +34,7 @@ sap.ui.define([
 	/**
 	 * Returns the HTML structure of the shape.
 	 *
-	 * @param {sap.suite.ui.commons.statusindicator.SimpleShape} oControl object by which html model will be generated
+	 * @param {sap.suite.statusindicator.SimpleShape} oControl object by which html model will be generated
 	 * @returns {HtmlElement} html model
 	 *
 	 * @private

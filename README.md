@@ -13,7 +13,7 @@ It contains a couple of UI5 libraries with additional useful controls.
 
 ## Requirements
 
-- [Node.js](https://nodejs.org/) (**version 8.5 or higher**)
+- [Node.js](https://nodejs.org/) (**version 10.15.0 or higher**)
 
 ## Installation
 

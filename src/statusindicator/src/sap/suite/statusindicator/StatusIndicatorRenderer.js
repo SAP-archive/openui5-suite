@@ -3,18 +3,18 @@
  */
 
 sap.ui.define([
-	"../library",
+	"./library",
 	"sap/ui/core/library",
-	"sap/suite/ui/commons/util/HtmlElement",
+	"sap/suite/controls/util/HtmlElement",
 	"sap/ui/core/Renderer",
 	"sap/base/Log"
 ], function (library, coreLibrary, HtmlElement, Renderer, Log) {
 	"use strict";
 
-	var oSizeType = library.statusindicator.SizeType;
-	var oLabelPositionType = library.statusindicator.LabelPositionType;
+	var oSizeType = library.SizeType;
+	var oLabelPositionType = library.LabelPositionType;
 	var oTextAlignType = coreLibrary.TextAlign;
-	var resourceBundle = sap.ui.getCore().getLibraryResourceBundle("sap.suite.ui.commons");
+	var resourceBundle = sap.ui.getCore().getLibraryResourceBundle("sap.suite.statusindicator");
 
 	function getClassBySize(oStatusIndicator, sPostfix) {
 		var sResult;
@@ -37,7 +37,7 @@ sap.ui.define([
 				// nothing
 				break;
 			default:
-				Log.error("Unknown size. Expecting size defined in sap.suite.ui.commons.statusindicator.SizeType," +
+				Log.error("Unknown size. Expecting size defined in sap.suite.statusindicator.SizeType," +
 					" but '" + oStatusIndicator.getSize() + "' given.");
 				// default size is small
 				sResult = "sapSuiteStatusIndicatorSmall";
@@ -57,14 +57,14 @@ sap.ui.define([
 	 * @namespace
 	 * @extends sap.ui.core.Renderer
 	 */
-	var StatusIndicatorRenderer = Renderer.extend("sap.suite.ui.commons.StatusIndicatorRenderer");
+	var StatusIndicatorRenderer = Renderer.extend("sap.suite.statusindicator.StatusIndicatorRenderer");
 
 	/**
 	 * Renders the HTML for the given control, using the provided {@link sap.ui.core.RenderManager}.
 	 *
 	 * @param {sap.ui.core.RenderManager} oRm
 	 *            The RenderManager that can be used for writing to the render output buffer.
-	 * @param {sap.suite.ui.commons.StatusIndicator} oControl
+	 * @param {sap.suite.statusindicator.StatusIndicator} oControl
 	 *            An object representation of the control that should be rendered.
 	 */
 	StatusIndicatorRenderer.render = function (oRm, oControl) {
@@ -75,9 +75,9 @@ sap.ui.define([
 	/**
 	 * Returns HtmlElement instance of the root div of the StatusIndicator.
 	 *
-	 * @param {sap.suite.ui.commons.StatusIndicator} oStatusIndicator
+	 * @param {sap.suite.statusindicator.StatusIndicator} oStatusIndicator
 	 *            the StatusIndicator to be rendered
-	 * @returns {sap.suite.ui.commons.util.HtmlElement} root div HtmlElement instance
+	 * @returns {sap.suite.statusindicator.util.HtmlElement} root div HtmlElement instance
 	 * @private
 	 */
 	StatusIndicatorRenderer._getHtmlModel = function (oStatusIndicator) {
@@ -153,9 +153,9 @@ sap.ui.define([
 	/**
 	 * Returns HtmlElement object of the svg element
 	 *
-	 * @param {sap.suite.ui.commons.StatusIndicator} oStatusIndicator
+	 * @param {sap.suite.statusindicator.StatusIndicator} oStatusIndicator
 	 *            the StatusIndicator to be rendered
-	 * @returns {sap.suite.ui.commons.util.HtmlElement} svg HtmlElement instance
+	 * @returns {sap.suite.controls.util.HtmlElement} svg HtmlElement instance
 	 * @private
 	 */
 	StatusIndicatorRenderer._getSvgElement = function (oStatusIndicator) {

@@ -4,7 +4,7 @@
 
 sap.ui.define([
 	"./library",
-	"sap/suite/ui/commons/util/HtmlElement",
+	"sap/suite/controls/util/HtmlElement",
 	"sap/ui/core/Renderer"
 ], function (library, HtmlElement, Renderer) {
 	"use strict";
@@ -14,14 +14,14 @@ sap.ui.define([
 	 * @namespace
 	 * @extends sap.ui.core.Renderer
 	 */
-	var CustomShapeRenderer = Renderer.extend("sap.suite.ui.commons.statusindicator.CustomShapeRenderer");
+	var CustomShapeRenderer = Renderer.extend("sap.suite.statusindicator.CustomShapeRenderer");
 
 	/**
 	 * Renders the HTML for the given control, using the provided {@link sap.ui.core.RenderManager}.
 	 *
 	 * @param {sap.ui.core.RenderManager} oRm
 	 *            The RenderManager that can be used for writing to the render output buffer.
-	 * @param {sap.suite.ui.commons.StatusIndicator} oControl
+	 * @param {sap.suite.statusindicator.StatusIndicator} oControl
 	 *            An object representation of the control that should be rendered.
 	 *
 	 * @returns {void}
@@ -34,7 +34,7 @@ sap.ui.define([
 	/**
 	 * Returns HTML structure of the shape.
 	 *
-	 * @param {sap.suite.ui.commons.statusindicator.CustomShape} oControl control object
+	 * @param {sap.suite.statusindicator.CustomShape} oControl control object
 	 *
 	 * @returns {object} html model
 	 */
