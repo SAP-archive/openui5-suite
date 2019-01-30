@@ -426,7 +426,7 @@ sap.ui.define([
 		var bAboveDiscrete = null;
 		var sPropertyAriaLabel = null;
 
-		var oResourceBundle = sap.ui.getCore().getLibraryResourceBundle("sap.suite.ui.commons");
+		var oResourceBundle = sap.ui.getCore().getLibraryResourceBundle("sap.suite.statusindicator");
 
 		if (this._discreteThresholdsEnabled()) {
 			var oDiscreteThreshold = this._getDiscreteThresholdForValue(iValue);
