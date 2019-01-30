@@ -83,7 +83,7 @@ sap.ui.define([
 					/**
 					 * Predefined sizes for the status indicator.
 					 */
-					size: {type: "sap.suite.ui.commons.statusindicator.SizeType", defaultValue: SizeType.None},
+					size: {type: "sap.suite.statusindicator.SizeType", defaultValue: SizeType.None},
 
 					labelPosition: {
 						type: "sap.suite.statusindicator.LabelPositionType",

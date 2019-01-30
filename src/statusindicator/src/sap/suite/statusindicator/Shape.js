@@ -6,7 +6,7 @@ sap.ui.define([
 	"sap/ui/thirdparty/jquery",
 	"./library",
 	"sap/ui/core/Control",
-	"sap/suite/ui/commons/util/HtmlElement",
+	"sap/suite/controls/util/HtmlElement",
 	"sap/suite/statusindicator/util/ThemingUtil",
 	"sap/base/Log"
 ], function (jQuery, library, Control, HtmlElement, ThemingUtil, Log) {
@@ -96,7 +96,7 @@ sap.ui.define([
 					 * Defines the direction in which the shape is filled.
 					 */
 					fillingDirection: {
-						type: "sap.suite.ui.commons.statusindicator.FillingDirectionType",
+						type: "sap.suite.statusindicator.FillingDirectionType",
 						defaultValue: FillingDirectionType.Up
 					},
 
@@ -104,7 +104,7 @@ sap.ui.define([
 					 * Defines the type of the shape's fill.
 					 */
 					fillingType: {
-						type: "sap.suite.ui.commons.statusindicator.FillingType",
+						type: "sap.suite.statusindicator.FillingType",
 						defaultValue: FillingType.Linear
 					},
 
@@ -114,7 +114,7 @@ sap.ui.define([
 					 * Accepted values include <code>0</code> through <code>360</code> degrees.<br>
 					 * For example, if you set the filling angle to <code>45</code>, the shape will
 					 * be filled diagonally from the lower right part of the shape to its upper left part.<br>
-					 * This property can be used only when {@link sap.suite.ui.commons.statusindicator.FillingType}
+					 * This property can be used only when {@link sap.suite.statusindicator.FillingType}
 					 * is set to <code>Linear</code>.
 					 */
 					fillingAngle: {
@@ -126,7 +126,7 @@ sap.ui.define([
 					 * Defines the vertical alignment of the shape within its parent container.
 					 */
 					verticalAlignment: {
-						type: "sap.suite.ui.commons.statusindicator.VerticalAlignmentType",
+						type: "sap.suite.statusindicator.VerticalAlignmentType",
 						defaultValue: VerticalAlignmentType.Middle
 					},
 
@@ -134,7 +134,7 @@ sap.ui.define([
 					 * Defines the horizontal alignment of the shape within its parent container.
 					 */
 					horizontalAlignment: {
-						type: "sap.suite.ui.commons.statusindicator.HorizontalAlignmentType",
+						type: "sap.suite.statusindicator.HorizontalAlignmentType",
 						defaultValue: HorizontalAlignmentType.Middle
 					}
 				}

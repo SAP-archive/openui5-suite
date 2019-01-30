@@ -10,7 +10,7 @@ sap.ui.define([
 	"sap/suite/statusindicator/Path",
 	"sap/suite/statusindicator/Circle",
 	"sap/suite/statusindicator/Rectangle",
-	"sap/suite/ui/commons/util/HtmlElement",
+	"sap/suite/controls/util/HtmlElement",
 	"sap/base/Log"
 ], function (jQuery, library, ShapeGroup, Shape, Path, Circle, Rectangle, HtmlElement, Log) {
 	"use strict";
@@ -112,7 +112,7 @@ sap.ui.define([
 					 * Read-only aggregation that contains simple shapes transformed from the SVG definition.
 					 */
 					shapes: {
-						type: "sap.suite.ui.commons.statusindicator.SimpleShape",
+						type: "sap.suite.statusindicator.SimpleShape",
 						multiple: true,
 						defaultValue: null
 					},
@@ -122,7 +122,7 @@ sap.ui.define([
 					 * If this aggregation is not used, the shapes are filled in the order they are specified in the SVG definition.
 					 */
 					fillingOptions: {
-						type: "sap.suite.ui.commons.statusindicator.FillingOption",
+						type: "sap.suite.statusindicator.FillingOption",
 						multiple: true,
 						defaultValue: null
 					}
@@ -189,7 +189,7 @@ sap.ui.define([
 		});
 
 		if (!this.getDefinition()) {
-			if (!this.isA("sap.suite.ui.commons.statusindicator.LibraryShape")) {
+			if (!this.isA("sap.suite.statusindicator.LibraryShape")) {
 				Log.fatal("Definition has to be specified.");
 			}
 			return;

@@ -1,7 +1,9 @@
 const fsp = require("fsp");
 const path = require("path");
+const normalizer = require("@ui5/project").normalizer;
 
 const BASE_PATH = path.join(__dirname, "..", "..");
+const TESTSUITE_ID = "@openui5/sap.suite.testsuite";
 
 async function getLibraryDirectories() {
 	let libPath = path.join(BASE_PATH, "src");
@@ -9,26 +11,18 @@ async function getLibraryDirectories() {
 	return content.filter(c => c.isDirectory()).map(c => c.name);
 }
 
-function fixDependencies(modules) {
-	for (let module of Object.values(modules)) {
-		let dependencies = module.dependencies || {};
-		module.dependencies = [];
-		for (let dependencyName of Object.keys(dependencies)) {
-			if (modules[dependencyName]) {
-				module.dependencies.push(modules[dependencyName]);
-			}
-		}
-	}
+async function loadModuleConfig(modulePath) {
+	let config = await normalizer.generateProjectTree({cwd: modulePath});
+	return config;
 }
 
-function loadModuleConfig(modulePath) {
-	let pkg = require(path.join(modulePath, "package.json"));
-	return {
-		id: pkg.name,
-		version: pkg.version,
-		path: modulePath,
-		dependencies: pkg.dependencies
-	};
+function addTestsuiteDependencies(modules) {
+	let testsuite = modules[TESTSUITE_ID];
+	for (let key of Object.keys(modules)) {
+		if (key !== TESTSUITE_ID) {
+			testsuite.dependencies.push(modules[key]);
+		}
+	}
 }
 
 async function getModules() {
@@ -37,10 +31,10 @@ async function getModules() {
 	directories = directories.map(dir => path.join(BASE_PATH, "src", dir));
 	directories.push(path.join(BASE_PATH, "testsuite"));
 	for (let modulePath of directories) {
-		let moduleInfo = loadModuleConfig(modulePath);
+		let moduleInfo = await loadModuleConfig(modulePath);
 		modules[moduleInfo.id] = moduleInfo;
 	}
-	fixDependencies(modules);
+	addTestsuiteDependencies(modules);
 	return modules;
 }
 
@@ -57,5 +51,6 @@ if (require.main === module) {
 }
 
 module.exports = {
-	getModules: getModules
+	getModules: getModules,
+	TESTSUITE_ID: TESTSUITE_ID
 };

@@ -1,0 +1,116 @@
+<mvc:View
+		controllerName="sap.suite.statusindicator.sample.StatusIndicatorChoreography.App"
+		xmlns="sap.m"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:si="sap.suite.statusindicator"
+		height="100%">
+	<FlexBox alignItems="Start" wrap="Wrap">
+		<Panel class="sapUiResponsiveMargin" width="280px">
+			<headerToolbar>
+				<Toolbar>
+					<Title level="H2" text="All Shapes in the Same Group"/>
+				</Toolbar>
+			</headerToolbar>
+			<si:StatusIndicator id="indicator1" viewBox="-1 -1 170 162" class="sapUiSmallMargin">
+				<si:ShapeGroup>
+					<si:Rectangle x="0" y="100" width="50" height="50" strokeWidth="1" fillingType="Linear"/>
+					<si:Circle cx="80" cy="126" r="25" strokeWidth="1" fillingType="Linear" />
+					<si:Path d="M111 150 L136 100 L161 150 Z" strokeWidth="1" fillingType="Linear" />
+					<si:Rectangle x="0" y="0" width="50" height="50" strokeWidth="1" fillingType="Linear"/>
+					<si:Circle cx="80" cy="26" r="25" strokeWidth="1" fillingType="Linear" />
+					<si:Path d="M111 50 L136 0 L161 50 Z" strokeWidth="1" fillingType="Linear" />
+				</si:ShapeGroup>
+				<si:propertyThresholds>
+					<si:PropertyThreshold fillColor="Critical" toValue="60"/>
+					<si:PropertyThreshold fillColor="Error" toValue="30"/>
+					<si:PropertyThreshold fillColor="Good" toValue="100"/>
+				</si:propertyThresholds>
+			</si:StatusIndicator>
+		</Panel>
+		<Panel class="sapUiResponsiveMargin" width="280px">
+			<headerToolbar>
+				<Toolbar>
+					<Title level="H2" text="Each Shape in Its Own Group"/>
+				</Toolbar>
+			</headerToolbar>
+			<si:StatusIndicator id="indicator2" viewBox="-1 -1 170 162" class="sapUiSmallMargin">
+				<si:ShapeGroup>
+					<si:Rectangle x="0" y="100" width="50" height="50" strokeWidth="1" fillingType="Linear"/>
+				</si:ShapeGroup>
+				<si:ShapeGroup>
+					<si:Circle cx="80" cy="126" r="25" strokeWidth="1" fillingType="Linear" />
+				</si:ShapeGroup>
+				<si:ShapeGroup>
+					<si:Path d="M111 150 L136 100 L161 150 Z" strokeWidth="1" fillingType="Linear" />
+				</si:ShapeGroup>
+				<si:ShapeGroup>
+					<si:Rectangle x="0" y="0" width="50" height="50" strokeWidth="1" fillingType="Linear"/>
+				</si:ShapeGroup>
+				<si:ShapeGroup>
+					<si:Circle cx="80" cy="26" r="25" strokeWidth="1" fillingType="Linear" />
+				</si:ShapeGroup>
+				<si:ShapeGroup>
+					<si:Path d="M111 50 L136 0 L161 50 Z" strokeWidth="1" fillingType="Linear" />
+				</si:ShapeGroup>
+				<si:propertyThresholds>
+					<si:PropertyThreshold fillColor="Critical" toValue="60"/>
+					<si:PropertyThreshold fillColor="Error" toValue="30"/>
+					<si:PropertyThreshold fillColor="Good" toValue="100"/>
+				</si:propertyThresholds>
+			</si:StatusIndicator>
+		</Panel>
+		<Panel class="sapUiResponsiveMargin" width="280px">
+			<headerToolbar>
+				<Toolbar>
+					<Title level="H2" text="Lines in Different Groups"/>
+				</Toolbar>
+			</headerToolbar>
+			<si:StatusIndicator id="indicator3" viewBox="-1 -1 170 162" class="sapUiSmallMargin">
+				<si:ShapeGroup>
+					<si:Rectangle x="0" y="100" width="50" height="50" strokeWidth="1" fillingType="Linear"/>
+					<si:Circle cx="80" cy="126" r="25" strokeWidth="1" fillingType="Linear" />
+					<si:Path d="M111 150 L136 100 L161 150 Z" strokeWidth="1" fillingType="Linear" />
+				</si:ShapeGroup>
+				<si:ShapeGroup>
+					<si:Rectangle x="0" y="0" width="50" height="50" strokeWidth="1" fillingType="Linear"/>
+					<si:Circle cx="80" cy="26" r="25" strokeWidth="1" fillingType="Linear" />
+					<si:Path d="M111 50 L136 0 L161 50 Z" strokeWidth="1" fillingType="Linear" />
+				</si:ShapeGroup>
+				<si:propertyThresholds>
+					<si:PropertyThreshold fillColor="Critical" toValue="60"/>
+					<si:PropertyThreshold fillColor="Error" toValue="30"/>
+					<si:PropertyThreshold fillColor="Good" toValue="100"/>
+				</si:propertyThresholds>
+			</si:StatusIndicator>
+		</Panel>
+		<Panel class="sapUiResponsiveMargin" width="280px">
+			<headerToolbar>
+				<Toolbar>
+					<Title level="H2" text="Groups by Shapes"/>
+				</Toolbar>
+			</headerToolbar>
+			<si:StatusIndicator id="indicator4" viewBox="-1 -1 170 162" class="sapUiSmallMargin">
+				<si:ShapeGroup>
+					<si:Rectangle x="0" y="100" width="50" height="50" strokeWidth="1" fillingType="Linear"/>
+					<si:Rectangle x="0" y="0" width="50" height="50" strokeWidth="1" fillingType="Linear"/>
+				</si:ShapeGroup>
+				<si:ShapeGroup>
+					<si:Circle cx="80" cy="126" r="25" strokeWidth="1" fillingType="Linear" />
+					<si:Circle cx="80" cy="26" r="25" strokeWidth="1" fillingType="Linear" />
+				</si:ShapeGroup>
+				<si:ShapeGroup>
+					<si:Path d="M111 150 L136 100 L161 150 Z" strokeWidth="1" fillingType="Linear" />
+					<si:Path d="M111 50 L136 0 L161 50 Z" strokeWidth="1" fillingType="Linear" />
+				</si:ShapeGroup>
+				<si:propertyThresholds>
+					<si:PropertyThreshold fillColor="Critical" toValue="60"/>
+					<si:PropertyThreshold fillColor="Error" toValue="30"/>
+					<si:PropertyThreshold fillColor="Good" toValue="100"/>
+				</si:propertyThresholds>
+			</si:StatusIndicator>
+		</Panel>
+	</FlexBox>
+	<Slider showAdvancedTooltip="true" enableTickmarks="true" change="valueChanged">
+		<ResponsiveScale tickmarksBetweenLabels="10"/>
+	</Slider>
+</mvc:View>

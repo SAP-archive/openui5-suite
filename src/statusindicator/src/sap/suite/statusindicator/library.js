@@ -22,7 +22,11 @@ sap.ui.define([], function () {
 		dependencies: ["sap.ui.core"],
 		types: [
 			"sap.suite.statusindicator.FillingType",
-			"sap.suite.statusindicator.FillingDirectionType"
+			"sap.suite.statusindicator.FillingDirectionType",
+			"sap.suite.statusindicator.HorizontalAlignmentType",
+			"sap.suite.statusindicator.LabelPositionType",
+			"sap.suite.statusindicator.SizeType",
+			"sap.suite.statusindicator.VerticalAlignmentType"
 		],
 		interfaces: [],
 		controls: [
@@ -57,7 +61,7 @@ sap.ui.define([], function () {
 		 * Clockwise or counterclockwise circular filling is applied.
 		 *
 		 * <p>
-		 * For details, see {@link sap.suite.ui.commons.statusindicator.FillingDirectionType}.
+		 * For details, see {@link sap.suite.statusindicator.FillingDirectionType}.
 		 * </p>
 		 *
 		 * @public
@@ -76,9 +80,9 @@ sap.ui.define([], function () {
 	 * The direction of animation.<br>
 	 *
 	 * The direction types <code>Up</code>, <code>Down</code>, <code>Left</code>, and <code>Right</code> are available when
-	 * {@link sap.suite.ui.commons.statusindicator.FillingType} is set to <code>Linear</code>.<br>
+	 * {@link sap.suite.statusindicator.FillingType} is set to <code>Linear</code>.<br>
 	 * The direction types <code>Clockwise</code> and <code>Counterclockwise</code> are available when
-	 * {@link sap.suite.ui.commons.statusindicator.FillingType} is set to <code>Circular</code>.
+	 * {@link sap.suite.statusindicator.FillingType} is set to <code>Circular</code>.
 	 *
 	 * @public
 	 * @enum {string}
@@ -128,6 +132,145 @@ sap.ui.define([], function () {
 		CounterClockwise: "CounterClockwise"
 	};
 
+	/**
+	 * The horizontal alignment of the status indicator within its parent container.
+	 *
+	 * @public
+	 * @enum {string}
+	 */
+	sap.suite.statusindicator.HorizontalAlignmentType = {
+
+		/**
+		 * Left.
+		 *
+		 * @public
+		 */
+		Left: "Left",
+
+		/**
+		 * Middle.
+		 *
+		 * @public
+		 */
+		Middle: "Middle",
+
+		/**
+		 * Right.
+		 *
+		 * @public
+		 */
+		Right: "Right"
+	};
+
+	/**
+	 * Position of the label, relative to the status indicator.
+	 *
+	 * @public
+	 * @enum {string}
+	 */
+	sap.suite.statusindicator.LabelPositionType = {
+
+		/**
+		 * Top.
+		 *
+		 * @public
+		 */
+		Top: "Top",
+
+		/**
+		 * Right.
+		 *
+		 * @public
+		 */
+		Right: "Right",
+
+		/**
+		 * Bottom.
+		 *
+		 * @public
+		 */
+		Bottom: "Bottom",
+
+		/**
+		 * Left
+		 *
+		 * @public
+		 */
+		Left: "Left"
+	};
+
+	/**
+	 * Predefined sizes of the status indicator.
+	 *
+	 * @public
+	 * @enum {string}
+	 */
+	sap.suite.statusindicator.SizeType = {
+
+		/**
+		 * No size settings are applied.
+		 * @public
+		 */
+		None: "None",
+
+		/**
+		 * Small status indicator.
+		 *
+		 * @public
+		 */
+		Small: "Small",
+
+		/**
+		 * Medium status indicator.
+		 *
+		 * @public
+		 */
+		Medium: "Medium",
+
+		/**
+		 * Large status indicator.
+		 *
+		 * @public
+		 */
+		Large: "Large",
+
+		/**
+		 * Extra large status indicator.
+		 *
+		 * @public
+		 */
+		ExtraLarge: "ExtraLarge"
+	};
+
+	/**
+	 * The vertical alignment of the status indicator within its parent container.
+	 *
+	 * @public
+	 * @enum {string}
+	 */
+	sap.suite.statusindicator.VerticalAlignmentType = {
+
+		/**
+		 * Top.
+		 *
+		 * @public
+		 */
+		Top: "Top",
+
+		/**
+		 * Middle.
+		 *
+		 * @public
+		 */
+		Middle: "Middle",
+
+		/**
+		 * Bottom.
+		 *
+		 * @public
+		 */
+		Bottom: "Bottom"
+	};
 
 	return sap.suite.statusindicator;
 

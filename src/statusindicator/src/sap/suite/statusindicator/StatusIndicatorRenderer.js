@@ -11,9 +11,9 @@ sap.ui.define([
 ], function (library, coreLibrary, HtmlElement, Renderer, Log) {
 	"use strict";
 
-	var oSizeType = library.SizeType;
-	var oLabelPositionType = library.LabelPositionType;
-	var oTextAlignType = coreLibrary.TextAlign;
+	var SizeType = library.SizeType;
+	var LabelPositionType = library.LabelPositionType;
+	var TextAlignType = coreLibrary.TextAlign;
 	var resourceBundle = sap.ui.getCore().getLibraryResourceBundle("sap.suite.statusindicator");
 
 	function getClassBySize(oStatusIndicator, sPostfix) {
@@ -21,19 +21,19 @@ sap.ui.define([
 		sPostfix = typeof sPostfix === "string" ? sPostfix : "";
 
 		switch (oStatusIndicator.getSize()) {
-			case oSizeType.Small:
+			case SizeType.Small:
 				sResult = "sapSuiteStatusIndicatorSmall";
 				break;
-			case oSizeType.Medium:
+			case SizeType.Medium:
 				sResult = "sapSuiteStatusIndicatorMedium";
 				break;
-			case oSizeType.Large:
+			case SizeType.Large:
 				sResult = "sapSuiteStatusIndicatorLarge";
 				break;
-			case oSizeType.ExtraLarge:
+			case SizeType.ExtraLarge:
 				sResult = "sapSuiteStatusIndicatorExtraLarge";
 				break;
-			case oSizeType.None:
+			case SizeType.None:
 				// nothing
 				break;
 			default:
@@ -82,8 +82,8 @@ sap.ui.define([
 	 */
 	StatusIndicatorRenderer._getHtmlModel = function (oStatusIndicator) {
 		var sLabelPosition = oStatusIndicator.getLabelPosition();
-		var bIsRowOriented = sLabelPosition === oLabelPositionType.Left || sLabelPosition === oLabelPositionType.Right,
-			bIsLabelFirst = sLabelPosition === oLabelPositionType.Left || sLabelPosition === oLabelPositionType.Top;
+		var bIsRowOriented = sLabelPosition === LabelPositionType.Left || sLabelPosition === LabelPositionType.Right,
+			bIsLabelFirst = sLabelPosition === LabelPositionType.Left || sLabelPosition === LabelPositionType.Top;
 
 		var oRootElement = new HtmlElement("div");
 		oRootElement.addControlData(oStatusIndicator);
@@ -129,7 +129,7 @@ sap.ui.define([
 			oLabel.addStyleClass("sapSuiteStatusIndicatorLabel");
 			oLabel.addStyleClass(getClassBySize(oStatusIndicator, "Label"));
 			oLabel.addStyleClass(getLabelMarginClass(oStatusIndicator));
-			oLabel.setTextAlign(bIsRowOriented ? oTextAlignType.Left : oTextAlignType.Center);
+			oLabel.setTextAlign(bIsRowOriented ? TextAlignType.Left : TextAlignType.Center);
 
 			oLabelWrapper.addChild(oLabel);
 			oRootElement.addChild(oLabelWrapper);

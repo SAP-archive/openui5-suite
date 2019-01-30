@@ -1,0 +1,202 @@
+{
+	"shapes": [
+		{
+			"id": "arrow_down"
+		},
+		{
+			"id": "arrow_left"
+		},
+		{
+			"id": "arrow_right"
+		},
+		{
+			"id": "arrow_up"
+		},
+		{
+			"id": "attention_1"
+		},
+		{
+			"id": "attention_2"
+		},
+		{
+			"id": "building"
+		},
+		{
+			"id": "bulb"
+		},
+		{
+			"id": "bull"
+		},
+		{
+			"id": "calendar"
+		},
+		{
+			"id": "car"
+		},
+		{
+			"id": "cart"
+		},
+		{
+			"id": "cereals"
+		},
+		{
+			"id": "circle"
+		},
+		{
+			"id": "clock"
+		},
+		{
+			"id": "cloud"
+		},
+		{
+			"id": "conveyor"
+		},
+		{
+			"id": "desk"
+		},
+		{
+			"id": "document"
+		},
+		{
+			"id": "documents"
+		},
+		{
+			"id": "dollar"
+		},
+		{
+			"id": "donut"
+		},
+		{
+			"id": "drop"
+		},
+		{
+			"id": "envelope"
+		},
+		{
+			"id": "euro"
+		},
+		{
+			"id": "factory"
+		},
+		{
+			"id": "female"
+		},
+		{
+			"id": "fish"
+		},
+		{
+			"id": "flag"
+		},
+		{
+			"id": "folder_1"
+		},
+		{
+			"id": "folder_2"
+		},
+		{
+			"id": "gear"
+		},
+		{
+			"id": "heart"
+		},
+		{
+			"id": "honey"
+		},
+		{
+			"id": "house"
+		},
+		{
+			"id": "information"
+		},
+		{
+			"id": "letter"
+		},
+		{
+			"id": "lung"
+		},
+		{
+			"id": "machine"
+		},
+		{
+			"id": "male"
+		},
+		{
+			"id": "pen"
+		},
+		{
+			"id": "person"
+		},
+		{
+			"id": "pin"
+		},
+		{
+			"id": "plane"
+		},
+		{
+			"id": "printer"
+		},
+		{
+			"id": "progress"
+		},
+		{
+			"id": "question"
+		},
+		{
+			"id": "robot"
+		},
+		{
+			"id": "sandclock"
+		},
+		{
+			"id": "speed"
+		},
+		{
+			"id": "stomach"
+		},
+		{
+			"id": "success"
+		},
+		{
+			"id": "tank_diesel"
+		},
+		{
+			"id": "tank_lpg"
+		},
+		{
+			"id": "thermo"
+		},
+		{
+			"id": "tool"
+		},
+		{
+			"id": "transfusion"
+		},
+		{
+			"id": "travel"
+		},
+		{
+			"id": "turnip"
+		},
+		{
+			"id": "vehicle_construction"
+		},
+		{
+			"id": "vehicle_tank"
+		},
+		{
+			"id": "vehicle_tractor"
+		},
+		{
+			"id": "vehicle_truck_1"
+		},
+		{
+			"id": "vehicle_truck_2"
+		},
+		{
+			"id": "vehicle_truck_3"
+		},
+		{
+			"id": "warehouse"
+		}
+	]
+}

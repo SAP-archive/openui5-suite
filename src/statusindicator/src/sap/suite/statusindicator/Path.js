@@ -3,7 +3,7 @@
  */
 
 sap.ui.define([
-	"sap/suite/ui/commons/util/HtmlElement",
+	"sap/suite/controls/util/HtmlElement",
 	"sap/suite/statusindicator/SimpleShape",
 	"sap/suite/statusindicator/SimpleShapeRenderer"
 ], function (HtmlElement, SimpleShape, SimpleShapeRenderer) {

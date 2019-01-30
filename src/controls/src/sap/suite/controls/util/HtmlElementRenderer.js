@@ -88,7 +88,7 @@ sap.ui.define([
 	 */
 	HtmlElementRenderer.prototype._renderChildren = function (oRm) {
 		if (typeof HtmlElement === "undefined") {
-			HtmlElement = sap.ui.require("sap/suite/ui/commons/util/HtmlElement");
+			HtmlElement = sap.ui.require("sap/suite/controls/util/HtmlElement");
 		}
 		this._oHtmlElement._aChildren.forEach(function (child) {
 			if (typeof child === "string") {

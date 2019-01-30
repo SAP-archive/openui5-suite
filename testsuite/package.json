@@ -4,16 +4,23 @@
 	"description": "TestSuite for Suite Library",
 	"author": "SAP SE (https://www.sap.com)",
 	"license": "Apache-2.0",
+	"scripts": {
+		"start": "node src/server.js"
+	},
 	"devDependencies": {
 		"@ui5/project": "^1.0.0",
 		"@ui5/server": "^1.0.0",
 		"fsp": "^0.1.2"
 	},
 	"dependencies": {
+		"@openui5/sap.f": "^1.61.2",
 		"@openui5/sap.m": "^1.61.2",
-		"@openui5/sap.suite.controls": "1.63.0-SNAPSHOT",
-		"@openui5/sap.suite.statusindicator": "1.63.0-SNAPSHOT",
+		"@openui5/sap.tnt": "^1.61.2",
+		"@openui5/sap.ui.codeeditor": "^1.61.2",
 		"@openui5/sap.ui.core": "^1.61.2",
-		"@openui5/sap.ui.documentation": "^1.61.2"
+		"@openui5/sap.ui.documentation": "^1.61.2",
+		"@openui5/sap.ui.unified": "^1.61.2",
+		"@openui5/sap.uxap": "^1.61.2",
+		"@openui5/themelib_sap_belize": "^1.61.2"
 	}
 }

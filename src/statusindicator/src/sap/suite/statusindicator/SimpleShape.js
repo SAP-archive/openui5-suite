@@ -3,7 +3,7 @@
  */
 
 sap.ui.define([
-	"../library",
+	"./library",
 	"sap/ui/core/Control",
 	"sap/suite/statusindicator/Shape",
 	"sap/suite/statusindicator/util/ThemingUtil",

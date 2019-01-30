@@ -1,0 +1,49 @@
+<mvc:View
+	controllerName="sap.suite.statusindicator.sample.StatusIndicatorCircularFill.App"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:si="sap.suite.statusindicator"
+	height="100%">
+	<FlexBox
+		direction="Column"
+		alignItems="Start">
+		<items>
+			<Panel class="sapUiResponsiveMargin">
+				<headerToolbar>
+					<Toolbar>
+						<Title level="H2" text="Circular filling"/>
+					</Toolbar>
+				</headerToolbar>
+				<FlexBox height="auto" alignItems="Start" justifyContent="Start">
+					<items>
+						<FlexBox class="sapUiSmallMarginBegin" direction="Column">
+							<Title level="H4" text="Clockwise"/>
+							<si:StatusIndicator id="indicator0" width="50px" height="auto" class="sapUiSmallMargin">
+								<si:ShapeGroup>
+									<si:Rectangle x="0" y="0" width="50" height="100" strokeWidth="1" fillingType="Circular" />
+								</si:ShapeGroup>
+								<si:propertyThresholds>
+									<si:PropertyThreshold fillColor="Critical" toValue="60"/>
+									<si:PropertyThreshold fillColor="Error" toValue="30"/>
+									<si:PropertyThreshold fillColor="Good" toValue="100"/>
+								</si:propertyThresholds>
+							</si:StatusIndicator>
+						</FlexBox>
+						<FlexBox class="sapUiSmallMarginBegin" direction="Column">
+							<Title level="H4" text="Counter clockwise"/>
+							<si:StatusIndicator id="indicator1" width="100px" height="auto" class="sapUiSmallMargin">
+								<si:ShapeGroup>
+									<si:CustomShape id="customShape0" fillingType="Circular" fillingDirection="CounterClockwise" />
+								</si:ShapeGroup>
+							</si:StatusIndicator>
+
+						</FlexBox>
+					</items>
+				</FlexBox>
+			</Panel>
+		</items>
+	</FlexBox>
+	<Slider showAdvancedTooltip="true" enableTickmarks="true" change="valueChanged">
+		<ResponsiveScale tickmarksBetweenLabels="10"/>
+	</Slider>
+</mvc:View>

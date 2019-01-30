@@ -1,10 +1,9 @@
 const ui5Server = require("@ui5/server").server;
-const projectPreprocessor = require("@ui5/project").projectPreprocessor;
-const getModules = require("./moduleLoader").getModules;
+const moduleLoader = require("./moduleLoader");
 
 async function serve(dependencyTree) {
 	const port = process.env.OPENUI5_SRV_PORT || 8080;
-	let tree = await projectPreprocessor.processTree(dependencyTree["@openui5/sap.suite.testsuite"]);
+	let tree = dependencyTree[moduleLoader.TESTSUITE_ID];
 
 	await ui5Server.serve(tree, {
 		port: port,
@@ -15,7 +14,7 @@ async function serve(dependencyTree) {
 }
 
 async function main() {
-	let modules = await getModules();
+	let modules = await moduleLoader.getModules();
 	await serve(modules);
 }
 
