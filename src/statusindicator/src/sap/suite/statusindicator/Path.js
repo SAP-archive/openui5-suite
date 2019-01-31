@@ -3,10 +3,9 @@
  */
 
 sap.ui.define([
-	"sap/suite/controls/util/HtmlElement",
 	"sap/suite/statusindicator/SimpleShape",
 	"sap/suite/statusindicator/SimpleShapeRenderer"
-], function (HtmlElement, SimpleShape, SimpleShapeRenderer) {
+], function (SimpleShape, SimpleShapeRenderer) {
 	"use strict";
 
 	/**
@@ -46,18 +45,13 @@ sap.ui.define([
 			renderer: SimpleShapeRenderer
 		});
 
-	Path.prototype._getSimpleShapeElement = function (sPathId) {
-		var oPathElement = new HtmlElement("path");
-
-		oPathElement.setId(this._buildIdString(sPathId));
-		oPathElement.setAttribute("d", this.getD(), true);
-		oPathElement.setAttribute("stroke-width", this.getStrokeWidth());
-		oPathElement.setAttribute("stroke", this._getCssStrokeColor());
-		if (this.aCustomStyleClasses) {
-			this.aCustomStyleClasses.forEach(oPathElement.addClass.bind(oPathElement));
-		}
-
-		return oPathElement;
+	Path.prototype._renderSimpleShapeElement = function (oRm, mAttributes) {
+		oRm.voidStart("path");
+		this._renderElementAttributes(oRm, mAttributes);
+		oRm.attr("d", this.getD());
+		oRm.attr("stroke-width", this.getStrokeWidth());
+		oRm.attr("stroke", this._getCssStrokeColor());
+		oRm.voidEnd();
 	};
 
 	return Path;

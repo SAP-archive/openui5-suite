@@ -1,8 +1,7 @@
 sap.ui.define([
-	"sap/suite/controls/util/HtmlElement",
 	"sap/suite/statusindicator/SimpleShape",
 	"sap/suite/statusindicator/SimpleShapeRenderer"
-], function (HtmlElement, SimpleShape, SimpleShapeRenderer) {
+], function (SimpleShape, SimpleShapeRenderer) {
 	"use strict";
 
 	/**
@@ -66,20 +65,18 @@ sap.ui.define([
 			renderer: SimpleShapeRenderer
 		});
 
-	Rectangle.prototype._getSimpleShapeElement = function (sRectId) {
-		var oRectElement = new HtmlElement("rect");
-		oRectElement.setId(this._buildIdString(sRectId));
-
-		oRectElement.setAttribute("x", this.getX());
-		oRectElement.setAttribute("y", this.getY());
-		oRectElement.setAttribute("width", this.getWidth());
-		oRectElement.setAttribute("height", this.getHeight());
-		oRectElement.setAttribute("rx", this.getRx());
-		oRectElement.setAttribute("ry", this.getRy());
-		oRectElement.setAttribute("stroke-width", this.getStrokeWidth());
-		oRectElement.setAttribute("stroke", this._getCssStrokeColor());
-
-		return oRectElement;
+	Rectangle.prototype._renderSimpleShapeElement = function (oRm, mAttributes) {
+		oRm.voidStart("rect");
+		this._renderElementAttributes(oRm, mAttributes);
+		oRm.attr("x", this.getX());
+		oRm.attr("y", this.getY());
+		oRm.attr("width", this.getWidth());
+		oRm.attr("height", this.getHeight());
+		oRm.attr("rx", this.getRx());
+		oRm.attr("ry", this.getRy());
+		oRm.attr("stroke-width", this.getStrokeWidth());
+		oRm.attr("stroke", this._getCssStrokeColor());
+		oRm.voidEnd();
 	};
 
 	return Rectangle;

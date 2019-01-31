@@ -50,7 +50,7 @@ sap.ui.define([
 			}
 		});
 
-	SimpleShape.prototype._getSimpleShapeElement = function () {
+	SimpleShape.prototype._renderSimpleShapeElement = function (oRm, mAttributes) {
 		Log.fatal("Must be overriden!");
 	};
 

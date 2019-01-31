@@ -4,10 +4,9 @@
 
 sap.ui.define([
 	"sap/suite/statusindicator/Shape",
-	"sap/suite/controls/util/HtmlElement",
 	"sap/suite/statusindicator/SimpleShape",
 	"sap/suite/statusindicator/SimpleShapeRenderer"
-], function (Shape, HtmlElement, SimpleShape, SimpleShapeRenderer) {
+], function (Shape, SimpleShape, SimpleShapeRenderer) {
 	"use strict";
 
 	/**
@@ -57,19 +56,16 @@ sap.ui.define([
 			renderer: SimpleShapeRenderer
 		});
 
-	Circle.prototype._getSimpleShapeElement = function (sCircleId) {
-		var oCircleElement = new HtmlElement("circle");
-		oCircleElement.setId(this._buildIdString(sCircleId));
-
-		oCircleElement.setAttribute("cx", this.getCx());
-		oCircleElement.setAttribute("cy", this.getCy());
-		oCircleElement.setAttribute("r", this.getR());
-		oCircleElement.setAttribute("stroke-width", this.getStrokeWidth());
-		oCircleElement.setAttribute("stroke", this._getCssStrokeColor());
-
-		return oCircleElement;
+	Circle.prototype._renderSimpleShapeElement = function (oRm, mAttributes) {
+		oRm.voidStart("circle");
+		this._renderElementAttributes(oRm, mAttributes);
+		oRm.attr("cx", this.getCx());
+		oRm.attr("cy", this.getCy());
+		oRm.attr("r", this.getR());
+		oRm.attr("stroke-width", this.getStrokeWidth());
+		oRm.attr("stroke", this._getCssStrokeColor());
+		oRm.voidEnd();
 	};
-
 
 	return Circle;
 });

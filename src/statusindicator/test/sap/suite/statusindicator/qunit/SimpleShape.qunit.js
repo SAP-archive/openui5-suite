@@ -4,13 +4,12 @@ sap.ui.define([
 	"sap/suite/statusindicator/SimpleShapeRenderer",
 	"sap/suite/statusindicator/FillingType",
 	"./StubsFactory",
-	"sap/suite/controls/util/HtmlElement",
 	"./Utils",
 	"sap/ui/thirdparty/sinon",
 	"sap/ui/thirdparty/sinon-qunit",
 	"sap/ui/qunit/utils/createAndAppendDiv"
-], function (jQuery, SimpleShape, SimpleShapeRenderer, FillingType, StubsFactory, HtmlElement, Utils,
-             sinon, sinon_qunit, createAndAppendDiv) {
+], function (jQuery, SimpleShape, SimpleShapeRenderer, FillingType, StubsFactory, Utils, sinon, sinon_qunit,
+             createAndAppendDiv) {
 	"use strict";
 
 	// add svg element to document.body
@@ -74,11 +73,12 @@ sap.ui.define([
 		var oAnimationPropertiesResolver = StubsFactory.createDummyPropertiesResolver();
 		this.oSimpleShape._injectAnimationPropertiesResolver(oAnimationPropertiesResolver);
 
-		this.sandbox.stub(this.oSimpleShape, "_getSimpleShapeElement", function (sId) {
+		this.sandbox.stub(this.oSimpleShape, "_renderSimpleShapeElement", function (oRm, mAttributes) {
 			// having own dummy implementation of simple shape for testing cases only should be better then just stubbing parts
-			var oSimpleShapeElement = new HtmlElement("rect");
-			oSimpleShapeElement.setAttribute("stroke-width", 2);
-			return oSimpleShapeElement;
+			oRm.voidStart("rect");
+			this._renderElementAttributes(oRm, mAttributes);
+			oRm.attr("stroke-width", 2);
+			oRm.voidEnd();
 		});
 
 		this.oSimpleShape.placeAt("content");
@@ -106,9 +106,11 @@ sap.ui.define([
 		this.oSimpleShape._sViewBox = "1 5 10 50";
 		this.oSimpleShape._injectAnimationPropertiesResolver(StubsFactory.createDummyPropertiesResolver());
 
-		this.sandbox.stub(this.oSimpleShape, "_getSimpleShapeElement", function (sId) {
+		this.sandbox.stub(this.oSimpleShape, "_renderSimpleShapeElement", function (oRm, mAttributes) {
 			// having own dummy implementation of simple shape for testing cases only should be better then just stubbing parts
-			return new HtmlElement("rect");
+			oRm.voidStart("rect");
+			this._renderElementAttributes(oRm, mAttributes);
+			oRm.voidEnd();
 		});
 
 		this.oSimpleShape.placeAt("content");
@@ -189,10 +191,12 @@ sap.ui.define([
 		var oAnimationPropertiesResolver = StubsFactory.createDummyPropertiesResolver();
 		this.oSimpleShape._injectAnimationPropertiesResolver(oAnimationPropertiesResolver);
 
-		this.sandbox.stub(this.oSimpleShape, "_getSimpleShapeElement", function (sId) {
-			// having own dummy implementation of simple shape for testing cases only should be better then just stubbing parts
-			return new HtmlElement("rect");
+		this.sandbox.stub(this.oSimpleShape, "_renderSimpleShapeElement", function (oRm, mAttributes) {
+			oRm.voidStart("rect");
+			this._renderElementAttributes(oRm, mAttributes);
+			oRm.voidEnd();
 		});
+
 
 		this.oSimpleShape.placeAt("svg-container", "last");
 		oCore.applyChanges();
@@ -222,8 +226,10 @@ sap.ui.define([
 			var oAnimationPropertiesResolver = StubsFactory.createDummyPropertiesResolver();
 			this.oSimpleShape._injectAnimationPropertiesResolver(oAnimationPropertiesResolver);
 
-			this.sandbox.stub(this.oSimpleShape, "_getSimpleShapeElement", function (sId) {
-				return new HtmlElement("rect");
+			this.sandbox.stub(this.oSimpleShape, "_renderSimpleShapeElement", function (oRm, mAttributes) {
+				oRm.voidStart("rect");
+				this._renderElementAttributes(oRm, mAttributes);
+				oRm.voidEnd();
 			});
 
 			this.oSimpleShape.placeAt("svg-container", "last");
@@ -257,9 +263,12 @@ sap.ui.define([
 	QUnit.test("Test invalidation of references before rendering", function (assert) {
 		this.oSimpleShape = new SimpleShape();
 
-		this.sandbox.stub(this.oSimpleShape, "_getSimpleShapeElement", function (sId) {
-			return new HtmlElement("rect");
+		this.sandbox.stub(this.oSimpleShape, "_renderSimpleShapeElement", function (oRm, mAttributes) {
+			oRm.voidStart("rect");
+			this._renderElementAttributes(oRm, mAttributes);
+			oRm.voidEnd();
 		});
+
 
 		var oClearDomReferencesSpy = this.sandbox.spy(SimpleShapeRenderer, "_clearDomReferences");
 

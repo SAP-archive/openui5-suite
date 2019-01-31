@@ -4,12 +4,14 @@
 
 sap.ui.define([
 	"./library",
-	"sap/suite/controls/util/HtmlElement",
 	"sap/ui/core/Renderer"
-], function (library, HtmlElement, Renderer) {
+], function (library, Renderer) {
 	"use strict";
 
 	var FillingType = library.FillingType;
+
+	var STOP_ID = "stop",
+		GRADIENT_ID = "gradient";
 
 	/**
 	 * StatusIndicator renderer.
@@ -27,67 +29,104 @@ sap.ui.define([
 	 *            An object representation of the control that should be rendered.
 	 */
 	SimpleShapeRenderer.render = function (oRm, oControl) {
-		var oModel = this._getHtmlModel(oControl);
-		oModel.getRenderer().render(oRm);
-	};
-
-	/**
-	 * Returns the HTML structure of the shape.
-	 *
-	 * @param {sap.suite.statusindicator.SimpleShape} oControl object by which html model will be generated
-	 * @returns {HtmlElement} html model
-	 *
-	 * @private
-	 */
-	SimpleShapeRenderer._getHtmlModel = function (oControl) {
 		var sMaskId = oControl._buildIdString(oControl.getId(), "mask");
 
-		// root element has to be svg with namespace. It is due the way openui5 renders controls.
-		// if root element is not svg with namespace, the element is not correctly displayed by browser
-		var oShapeRootElement = new HtmlElement("svg");
-		oShapeRootElement.setAttribute("xlmns", "http://www.w3.org/2000/svg");
+		oRm.openStart("svg"); //Root
+		oRm.attr("xlmns", "http://www.w3.org/2000/svg");
 
 		var sInternalViewBox = oControl._getInternalViewBox();
 		if (sInternalViewBox) {
-			oShapeRootElement.setAttribute("viewBox", sInternalViewBox);
+			oRm.attr("viewBox", sInternalViewBox);
 		}
-		oShapeRootElement.setAttribute("preserveAspectRatio", oControl._buildPreserveAspectRatioAttribute());
-		oShapeRootElement.setAttribute("overflow", "visible");
-		oShapeRootElement.addControlData(oControl);
+		oRm.attr("preserveAspectRatio", oControl._buildPreserveAspectRatioAttribute());
+		oRm.attr("overflow", "visible");
+		oRm.controlData(oControl);
+		oRm.openEnd(); //Root
 
-		var oDefsElement = new HtmlElement("defs");
-
+		oRm.openStart("defs").openEnd(); //Defs
 		if (oControl.getFillingType() !== FillingType.None) {
-			// gradient element
-
 			if (oControl._useGradientForAnimation()) {
-				oDefsElement.addChild(oControl._getGradientElement(oControl._iDisplayedValue));
+				this._renderGradientElement(oRm, oControl);
 			}
-
-			// mask element
-			var oMaskElement = oControl._getMaskElement(sMaskId);
-			oDefsElement.addChild(oMaskElement);
-			oShapeRootElement.addChild(oDefsElement);
+			this._renderMaskElement(oRm, oControl, sMaskId);
 		}
+		oRm.close("defs"); //Defs
 
-		// element
-		var sShapeId = oControl._buildIdString(oControl.getId(), "shape");
-		var oShapeElement = oControl._getSimpleShapeElement(sShapeId);
-		oShapeElement.setAttribute("fill", oControl._resolveFillColor());
-		oShapeElement.setAttribute("mask", oControl._buildSvgUrlString(sMaskId));
-
+		var mAttributes = {
+			id: oControl._buildIdString(oControl.getId(), "shape"),
+			fill: oControl._resolveFillColor(),
+			mask: "url(#" + sMaskId + ")",
+			"stroke-width": 0
+		};
 		if (oControl._sStyleAttribute) {
-			oShapeElement.setAttribute("style", oControl._sStyleAttribute);
+			mAttributes.style = oControl._sStyleAttribute;
+		}
+		oControl._renderSimpleShapeElement(oRm, mAttributes);
+
+		mAttributes = {
+			id: oControl._buildIdString(oControl.getId(), "shape-border"),
+			fill: "transparent"
+		};
+		oControl._renderSimpleShapeElement(oRm, mAttributes);
+
+		oRm.close("svg"); //Root
+	};
+
+	SimpleShapeRenderer._renderGradientElement = function (oRm, oControl) {
+		var iDisplayedValue = oControl._iDisplayedValue,
+			sTagName = oControl.getFillingType() === FillingType.Linear ? "linearGradient" : "radialGradient";
+
+		oRm.openStart(sTagName); //GradientElement
+		oRm.attr("id", oControl._buildIdString(oControl.getId(), GRADIENT_ID));
+
+		if (oControl.getFillingType() === FillingType.Linear) {
+			var iComputedAngle = oControl.computeLinearFillingAngle();
+			oRm.attr("x1", iComputedAngle === 90 ? 1 : 0);
+			oRm.attr("y1", iComputedAngle === 0 ? 1 : 0);
+			oRm.attr("x2", iComputedAngle === 270 ? 1 : 0);
+			oRm.attr("y2", iComputedAngle === 180 ? 1 : 0);
+		}
+		oRm.openEnd(); //GradientElement
+
+		var fOffset = oControl._getDisplayedGradientOffset(iDisplayedValue);
+		oRm.voidStart(STOP_ID); //StopColor
+		oRm.attr("offset", fOffset);
+		oRm.attr("stop-color", "white");
+		oRm.voidEnd(); //StopColor
+
+		oRm.voidStart(STOP_ID); //StopTransparent
+		oRm.attr("offset", fOffset);
+		oRm.attr("stop-color", "transparent");
+		oRm.voidEnd(); //StopTransparent
+
+		oRm.close(sTagName); //GradientElement
+	};
+
+	SimpleShapeRenderer._renderMaskElement = function (oRm, oControl, sMaskId) {
+		oRm.openStart("mask"); //Mask
+		oRm.attr("id", sMaskId);
+		oRm.openEnd(); //Mask
+
+		if (oControl._useGradientForAnimation()) {
+			oControl._renderSimpleShapeElement(oRm, {
+				id: oControl._buildIdString(oControl.getId(), "mask-shape"),
+				"stroke-width": 0,
+				stroke: "white",
+				fill: "url(#" + oControl._buildIdString(oControl.getId(), GRADIENT_ID) + ")"
+			});
+		} else {
+			oRm.voidStart("polygon");
+			oRm.attr("id", oControl._buildIdString(oControl.getId(), "polygon"));
+			oRm.attr("fill", "white");
+			// calculating polygon's points depends on bounding box. But bounding box is
+			// possible to obtain only when the SVG is in DOM and when SVG is visible
+			// therefore we cant render it on initial with specified value.
+			// It is easily possible to compute it without bounding box for rectangle/circle,
+			// but almost impossible for path
+			oRm.voidEnd();
 		}
 
-		oShapeElement.setAttribute("stroke-width", 0);
-		oShapeRootElement.addChild(oShapeElement);
-
-		var oBorderShapeElement = oControl._getSimpleShapeElement(oControl._buildIdString(sShapeId, "border"));
-		oBorderShapeElement.setAttribute("fill", "transparent");
-		oShapeRootElement.addChild(oBorderShapeElement);
-
-		return oShapeRootElement;
+		oRm.close("mask"); //Mask
 	};
 
 	SimpleShapeRenderer._updateDomColor = function (oControl, sNewFillColor) {
@@ -96,7 +135,7 @@ sap.ui.define([
 
 	SimpleShapeRenderer._updateDomGradient = function (oControl, iValue) {
 		if (!oControl.$stopNodes) {
-			oControl.$stopNodes = oControl.$(oControl.GRADIENT_ID).find(oControl.STOP_ID);
+			oControl.$stopNodes = oControl.$(GRADIENT_ID).find(STOP_ID);
 		}
 
 		oControl.$stopNodes.attr("offset", oControl._getDisplayedGradientOffset(iValue));

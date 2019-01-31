@@ -6,10 +6,9 @@ sap.ui.define([
 	"sap/ui/thirdparty/jquery",
 	"./library",
 	"sap/ui/core/Control",
-	"sap/suite/controls/util/HtmlElement",
 	"sap/suite/statusindicator/util/ThemingUtil",
 	"sap/base/Log"
-], function (jQuery, library, Control, HtmlElement, ThemingUtil, Log) {
+], function (jQuery, library, Control, ThemingUtil, Log) {
 	"use strict";
 
 	var FillingType = library.FillingType;
@@ -143,10 +142,6 @@ sap.ui.define([
 		}
 	);
 
-	Shape.prototype.GRADIENT_ID = "gradient";
-
-	Shape.prototype.STOP_ID = "stop";
-
 	/**
 	 * Returns the currently displayed value
 	 * This method must be overridden by a child class
@@ -229,44 +224,6 @@ sap.ui.define([
 
 		sResult += " meet";
 		return sResult;
-	};
-
-	Shape.prototype._getGradientElement = function (iDisplayedValue) {
-		var oGradientElement = new HtmlElement(this.getFillingType() === FillingType.Linear ? "linearGradient" : "radialGradient");
-		oGradientElement.setId(this._buildIdString(this.getId(), this.GRADIENT_ID));
-
-		if (this.getFillingType() === FillingType.Linear) {
-			var iComputedAngle = this.computeLinearFillingAngle();
-			oGradientElement.setAttribute("x1", iComputedAngle === 90 ? 1 : 0);
-			oGradientElement.setAttribute("y1", iComputedAngle === 0 ? 1 : 0);
-			oGradientElement.setAttribute("x2", iComputedAngle === 270 ? 1 : 0);
-			oGradientElement.setAttribute("y2", iComputedAngle === 180 ? 1 : 0);
-		}
-
-		var fOffset = this._getDisplayedGradientOffset(iDisplayedValue);
-		var oStopColorElement = new HtmlElement(this.STOP_ID);
-		oStopColorElement.setAttribute("offset", fOffset);
-		oStopColorElement.setAttribute("stop-color", "white");
-		oGradientElement.addChild(oStopColorElement);
-
-		var oStopTransparentElement = new HtmlElement(this.STOP_ID);
-		oStopTransparentElement.setAttribute("offset", fOffset);
-		oStopTransparentElement.setAttribute("stop-color", "transparent");
-		oGradientElement.addChild(oStopTransparentElement);
-
-		return oGradientElement;
-	};
-
-	Shape.prototype.getPolygonElement = function (iDisplayedValue) {
-		var oPolygonElement = new HtmlElement("polygon");
-		oPolygonElement.setId(this._buildIdString(this.getId(), "polygon"));
-		oPolygonElement.setAttribute("fill", "white");
-		// calculating polygon's points depends on bounding box. But bounding box is
-		// possible to obtain only when the SVG is in DOM and when SVG is visible
-		// therefore we cant render it on initial with specified value.
-		// It is easily possible to compute it without bounding box for rectangle/circle,
-		// but almost impossible for path
-		return oPolygonElement;
 	};
 
 	Shape.prototype.computeLinearFillingAngle = function () {
@@ -534,26 +491,15 @@ sap.ui.define([
 		}
 	};
 
-	Shape.prototype._getMaskElement = function (sMaskId) {
-		var oMaskElement = new HtmlElement("mask");
-		oMaskElement.setId(sMaskId);
-
-		if (this._useGradientForAnimation()) {
-			var oMaskShapeElement = this._getSimpleShapeElement(this._buildIdString(this.getId(), "mask-shape"));
-			oMaskShapeElement.setAttribute("stroke-width", 0);
-			oMaskShapeElement.setAttribute("stroke", "white");
-			oMaskShapeElement.setAttribute("fill", this._buildSvgUrlString(this.getId(), this.GRADIENT_ID));
-
-			oMaskElement.addChild(oMaskShapeElement);
-		} else {
-			oMaskElement.addChild(this.getPolygonElement(this._iDisplayedValue));
+	Shape.prototype._renderElementAttributes = function (oRm, mAttributes) {
+		Object.keys(mAttributes).forEach(function (sKey) {
+			oRm.attr(sKey, mAttributes[sKey]);
+		});
+		if (this.aCustomStyleClasses) {
+			this.aCustomStyleClasses.forEach(function (sClass) {
+				oRm.class(sClass);
+			});
 		}
-
-		return oMaskElement;
-	};
-
-	Shape.prototype._buildSvgUrlString = function () {
-		return "url(#" + this._buildIdString.apply(this, arguments) + ")";
 	};
 
 	Shape.prototype._buildIdString = function () {

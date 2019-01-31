@@ -4,9 +4,8 @@
 
 sap.ui.define([
 	"./library",
-	"sap/suite/controls/util/HtmlElement",
 	"sap/ui/core/Renderer"
-], function (library, HtmlElement, Renderer) {
+], function (library, Renderer) {
 	"use strict";
 
 	/**
@@ -27,36 +26,26 @@ sap.ui.define([
 	 * @returns {void}
 	 */
 	CustomShapeRenderer.render = function (oRm, oControl) {
-		var oModel = this._getHtmlModel(oControl);
-		oModel.getRenderer().render(oRm);
-	};
-
-	/**
-	 * Returns HTML structure of the shape.
-	 *
-	 * @param {sap.suite.statusindicator.CustomShape} oControl control object
-	 *
-	 * @returns {object} html model
-	 */
-	CustomShapeRenderer._getHtmlModel = function (oControl) {
-		var oShapeRootElement = new HtmlElement("svg");
-		oShapeRootElement.addControlData(oControl);
-		oShapeRootElement.setAttribute("version", "1.1");
-		oShapeRootElement.setAttribute("xlmns", "http://www.w3.org/2000/svg");
+		oRm.openStart("svg");
+		oRm.controlData(oControl);
+		oRm.attr("version", "1.1");
+		oRm.attr("xlmns", "http://www.w3.org/2000/svg");
 
 		var sInternalViewBox = oControl._getInternalViewBox();
 		if (sInternalViewBox) {
-			oShapeRootElement.setAttribute("viewBox", sInternalViewBox);
+			oRm.attr("viewBox", sInternalViewBox);
 		}
-		oShapeRootElement.setAttribute("preserveAspectRatio", oControl._buildPreserveAspectRatioAttribute());
-		oShapeRootElement.setAttribute("x", oControl.getX());
-		oShapeRootElement.setAttribute("y", oControl.getY());
-		oShapeRootElement.setAttribute("width", oControl.getWidth());
-		oShapeRootElement.setAttribute("height", oControl.getHeight());
+		oRm.attr("preserveAspectRatio", oControl._buildPreserveAspectRatioAttribute());
+		oRm.attr("x", oControl.getX());
+		oRm.attr("y", oControl.getY());
+		oRm.attr("width", oControl.getWidth());
+		oRm.attr("height", oControl.getHeight());
+		oRm.openEnd();
 
-		oControl.getShapes().forEach(oShapeRootElement.addChild.bind(oShapeRootElement));
-
-		return oShapeRootElement;
+		oControl.getShapes().forEach(function (oShape) {
+			oRm.renderControl(oShape);
+		});
+		oRm.close("svg");
 	};
 
 	CustomShapeRenderer._updateDomColor = function (oControl, sFillColor) {

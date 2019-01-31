@@ -5,10 +5,9 @@
 sap.ui.define([
 	"./library",
 	"sap/ui/core/library",
-	"sap/suite/controls/util/HtmlElement",
 	"sap/ui/core/Renderer",
 	"sap/base/Log"
-], function (library, coreLibrary, HtmlElement, Renderer, Log) {
+], function (library, coreLibrary, Renderer, Log) {
 	"use strict";
 
 	var SizeType = library.SizeType;
@@ -67,63 +66,43 @@ sap.ui.define([
 	 * @param {sap.suite.statusindicator.StatusIndicator} oControl
 	 *            An object representation of the control that should be rendered.
 	 */
-	StatusIndicatorRenderer.render = function (oRm, oControl) {
-		var oModel = this._getHtmlModel(oControl);
-		oModel.getRenderer().render(oRm);
-	};
-
-	/**
-	 * Returns HtmlElement instance of the root div of the StatusIndicator.
-	 *
-	 * @param {sap.suite.statusindicator.StatusIndicator} oStatusIndicator
-	 *            the StatusIndicator to be rendered
-	 * @returns {sap.suite.statusindicator.util.HtmlElement} root div HtmlElement instance
-	 * @private
-	 */
-	StatusIndicatorRenderer._getHtmlModel = function (oStatusIndicator) {
+	StatusIndicatorRenderer.render = function (oRm, oStatusIndicator) {
 		var sLabelPosition = oStatusIndicator.getLabelPosition();
 		var bIsRowOriented = sLabelPosition === LabelPositionType.Left || sLabelPosition === LabelPositionType.Right,
 			bIsLabelFirst = sLabelPosition === LabelPositionType.Left || sLabelPosition === LabelPositionType.Top;
 
-		var oRootElement = new HtmlElement("div");
-		oRootElement.addControlData(oStatusIndicator);
-		oRootElement.addClass("sapSuiteStatusIndicator");
-		oRootElement.setAttribute("role", "progressbar");
-		oRootElement.setAttribute("aria-roledescription", resourceBundle.getText("STATUS_INDICATOR_ARIA_ROLE_DESCRIPTION"));
-		oRootElement.setAttribute("aria-readonly", true);
+		oRm.openStart("div"); //Root
+		oRm.controlData(oStatusIndicator);
+		oRm.class("sapSuiteStatusIndicator");
+		oRm.attr("role", "progressbar");
+		oRm.attr("aria-roledescription", resourceBundle.getText("STATUS_INDICATOR_ARIA_ROLE_DESCRIPTION"));
+		oRm.attr("aria-readonly", true);
 
 		var sAriaLabel = oStatusIndicator.getAriaLabel();
-		oRootElement.setAttribute("aria-label", sAriaLabel ? sAriaLabel : resourceBundle.getText("STATUS_INDICATOR_ARIA_LABEL"), true);
+		oRm.attr("aria-label", sAriaLabel ? sAriaLabel : resourceBundle.getText("STATUS_INDICATOR_ARIA_LABEL"));
 
 		var aAriaLabelledBy = oStatusIndicator.getAriaLabelledBy();
 
 		if (aAriaLabelledBy && aAriaLabelledBy.length > 0) {
-			oRootElement.setAttribute("aria-labelledby", aAriaLabelledBy.join(" "), true);
+			oRm.attr("aria-labelledby", aAriaLabelledBy.join(" "));
 		}
 
 		var aAriaDescribedBy = oStatusIndicator.getAriaDescribedBy();
 
 		if (aAriaDescribedBy && aAriaDescribedBy.length > 0) {
-			oRootElement.setAttribute("aria-describedby", aAriaDescribedBy.join(" "), true);
+			oRm.attr("aria-describedby", aAriaDescribedBy.join(" "));
 		}
 
-		oRootElement.setAttribute("tabindex", "0");
-		oRootElement.setAttribute("aria-valuemin", 0);
-		oRootElement.setAttribute("aria-valuemax", 100);
-
-		if (bIsRowOriented) {
-			oRootElement.addClass("sapSuiteStatusIndicatorHorizontal");
-		} else {
-			oRootElement.addClass("sapSuiteStatusIndicatorVertical");
-		}
+		oRm.attr("tabindex", "0");
+		oRm.attr("aria-valuemin", 0);
+		oRm.attr("aria-valuemax", 100);
+		oRm.class(bIsRowOriented ? "sapSuiteStatusIndicatorHorizontal" : "sapSuiteStatusIndicatorVertical")
+		oRm.openEnd(); //Root
 
 		if (oStatusIndicator.getShowLabel()) {
-			var oLabelWrapper = new HtmlElement("div");
-			if (bIsLabelFirst) {
-				oLabelWrapper.addClass("sapSuiteStatusIndicatorLabelBeforeSvg");
-			} else {
-				oLabelWrapper.addClass("sapSuiteStatusIndicatorLabelAfterSvg");
-			}
+			oRm.openStart("div"); //LabelWrapper
+			oRm.class(bIsLabelFirst ? "sapSuiteStatusIndicatorLabelBeforeSvg" : "sapSuiteStatusIndicatorLabelAfterSvg");
+			oRm.openEnd(); //LabelWrapper
 
 			var oLabel = oStatusIndicator.getLabel();
 			oLabel.addStyleClass("sapSuiteStatusIndicatorLabel");
@@ -131,52 +110,44 @@ sap.ui.define([
 			oLabel.addStyleClass(getLabelMarginClass(oStatusIndicator));
 			oLabel.setTextAlign(bIsRowOriented ? TextAlignType.Left : TextAlignType.Center);
 
-			oLabelWrapper.addChild(oLabel);
-			oRootElement.addChild(oLabelWrapper);
+			oRm.renderControl(oLabel);
+
+			oRm.close("div"); //LabelWrapper
 		}
 
-		var oSvgContainer = new HtmlElement("div");
-		oSvgContainer.setAttribute("focusable", false);
-		oSvgContainer.addClass("sapSuiteStatusIndicatorSvg");
+		oRm.openStart("div"); //SvgContainer
+		oRm.attr("focusable", false);
+		oRm.class("sapSuiteStatusIndicatorSvg");
+		oRm.class(getClassBySize(oStatusIndicator, "Svg"));
+		oRm.style("width", oStatusIndicator.getWidth());
+		oRm.style("height", oStatusIndicator.getHeight());
+		oRm.openEnd(); //SvgContainer
 
-		oSvgContainer.addClass(getClassBySize(oStatusIndicator, "Svg"));
-		oSvgContainer.addStyle("width", oStatusIndicator.getWidth());
-		oSvgContainer.addStyle("height", oStatusIndicator.getHeight());
-		oSvgContainer.addChild(this._getSvgElement(oStatusIndicator));
+		this._renderSvgElement(oRm, oStatusIndicator);
 
-		oRootElement.addChild(oSvgContainer);
-
-		return oRootElement;
+		oRm.close("div"); //SvgContainer
+		oRm.close("div"); //Root
 	};
 
-
-	/**
-	 * Returns HtmlElement object of the svg element
-	 *
-	 * @param {sap.suite.statusindicator.StatusIndicator} oStatusIndicator
-	 *            the StatusIndicator to be rendered
-	 * @returns {sap.suite.controls.util.HtmlElement} svg HtmlElement instance
-	 * @private
-	 */
-	StatusIndicatorRenderer._getSvgElement = function (oStatusIndicator) {
-		var oSvg = new HtmlElement("svg");
-		oSvg.setId(oStatusIndicator._getFullId(oStatusIndicator._internalIds.svgNodeId));
-		oSvg.setAttribute("version", "1.1");
-		oSvg.setAttribute("xlmns", "http://www.w3.org/2000/svg");
-		oSvg.setAttribute("preserveAspectRatio", "xMidYMid meet");
-		oSvg.addStyle("width", "100%");
-		oSvg.addStyle("height", "100%");
-
-		oSvg.setAttribute("focusable", false);
+	StatusIndicatorRenderer._renderSvgElement = function (oRm, oStatusIndicator) {
+		oRm.openStart("svg"); //Svg
+		oRm.attr("id", oStatusIndicator._getFullId(oStatusIndicator._internalIds.svgNodeId));
+		oRm.attr("version", "1.1");
+		oRm.attr("xlmns", "http://www.w3.org/2000/svg");
+		oRm.attr("preserveAspectRatio", "xMidYMid meet");
+		oRm.style("width", "100%");
+		oRm.style("height", "100%");
+		oRm.attr("focusable", false);
 		if (oStatusIndicator.getViewBox()) {
-			oSvg.setAttribute("viewBox", oStatusIndicator.getViewBox(), true);
+			oRm.attr("viewBox", oStatusIndicator.getViewBox());
 		}
+		oRm.openEnd(); //Svg
 
 		oStatusIndicator._getGroupShapes().forEach(function (oShape) {
-			oSvg.addChild(oShape);
+			oRm.renderControl(oShape);
 		});
 
-		return oSvg;
+		oRm.close("svg"); //Svg
 	};
 
 	return StatusIndicatorRenderer;
