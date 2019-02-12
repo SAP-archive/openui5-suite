@@ -4,6 +4,9 @@
 
 ## Description
 
+:warning: _This library is in testing mode. We are still trying to figure out how to make it work with openui5. Stay tooned._
+
+
 This is an open source extension library to [OpenUI5](https://github.com/SAP/openui5).
 It contains a couple of UI5 libraries with additional useful controls.
 
