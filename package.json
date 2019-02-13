@@ -1,6 +1,6 @@
 {
 	"name": "sap.suite",
-	"version": "1.62.0-SNAPSHOT",
+	"version": "1.64.0-SNAPSHOT",
 	"description": "Suite Library",
 	"devDependencies": {
 		"@ui5/server": "^1.0.0"
@@ -12,5 +12,11 @@
 		"sapui5",
 		"ui5",
 		"suite"
+	],
+	"private": true,
+	"workspaces": [
+		"src/controls",
+		"src/statusindicator",
+		"testsuite"
 	]
 }

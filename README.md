@@ -29,6 +29,11 @@ This library is released as part of [SAPUI5 SDK](https://tools.hana.ondemand.com
 You can install each library in this repository directly from npm. See instructions for each library:
 
  - [sap.suite.statusindicator](src/statusindicator/README.md)
+
+## Starting the Library Locally
+
+In order to start the library locally to see the demos or implement a change see the guideline in [testsuite](testsuite)
+project.
  
 ## Contributing
 
