@@ -1,0 +1,68 @@
+{
+	"explored": {
+		"entitiesDefaults": {
+			"appComponent": "CA-UI5-SC",
+			"formFactors": "ML"
+		},
+		"samplesRef": [
+			{
+				"namespace": "sap.suite.statusindicator.sample",
+				"ref": "test-resources/sap/suite/statusindicator/demokit/sample"
+			}
+		],
+		"entities": [
+			{
+				"id": "sap.suite.statusindicator.StatusIndicator",
+				"name": "Status Indicator",
+				"category": "Data Visualization",
+				"since": "1.50",
+				"samples": [
+					"sap.suite.statusindicator.sample.StatusIndicator",
+					"sap.suite.statusindicator.sample.StatusIndicatorFillingAngle",
+					"sap.suite.statusindicator.sample.StatusIndicatorCircularFill",
+					"sap.suite.statusindicator.sample.StatusIndicatorSemanticColors",
+					"sap.suite.statusindicator.sample.StatusIndicatorSizes",
+					"sap.suite.statusindicator.sample.StatusIndicatorChoreography",
+					"sap.suite.statusindicator.sample.StatusIndicatorShapesLibrary"
+				]
+			}
+		],
+		"samples": [
+			{
+				"id": "sap.suite.statusindicator.sample.StatusIndicator",
+				"name": "Status Indicators",
+				"description": "Shows status indicators that use different types of shapes and different animation settings. To preview how a status indicator's percentage value affects the status indicator's appearance, type a value between 0 and 100 into the 'Value' field and click 'Update Status'."
+			},
+			{
+				"id": "sap.suite.statusindicator.sample.StatusIndicatorFillingAngle",
+				"name": "Status Indicators Filled at an Arbitrary Angle",
+				"description": "Shows status indicators that use linear filling at different angles. To preview how a status indicator's percentage value affects the status indicator's appearance, type a value between 0 and 100 into the 'Value' field and click 'Update Status'."
+			},
+			{
+				"id": "sap.suite.statusindicator.sample.StatusIndicatorCircularFill",
+				"name": "Status Indicators with Circular Filling",
+				"description": "Shows status indicators that use circular fill. To preview how a status indicator's percentage value affects the status indicator's appearance, type a value between 0 and 100 into the 'Value' field and click 'Update Status'."
+			},
+			{
+				"id": "sap.suite.statusindicator.sample.StatusIndicatorSemanticColors",
+				"name": "Status Indicators Using Semantic Colors",
+				"description": "Shows status indicators with semantic colors. To preview how a status indicator's percentage value affects the status indicator's appearance, type a value between 0 and 100 into the 'Value' field and click 'Update Status'."
+			},
+			{
+				"id": "sap.suite.statusindicator.sample.StatusIndicatorSizes",
+				"name": "Status Indicators Sizes",
+				"description": "Shows status indicators of different sizes. To preview how a status indicator's percentage value affects the status indicator's appearance, type a value between 0 and 100 into the 'Value' field and click 'Update Status'."
+			},
+			{
+				"id": "sap.suite.statusindicator.sample.StatusIndicatorChoreography",
+				"name": "Status Indicators Choreography",
+				"description": "Shows content choreography features available for status indicators. This sample demonstrates how you can create a status indicator with different shapes that are filled in parallel, serial, and semi-parallel modes."
+			},
+			{
+				"id": "sap.suite.statusindicator.sample.StatusIndicatorShapesLibrary",
+				"name": "Status Indicators Shapes Library",
+				"description": "Shows predefined shapes available from the shapes library."
+			}
+		]
+	}
+}

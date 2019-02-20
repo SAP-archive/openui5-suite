@@ -1,0 +1,34 @@
+<core:FragmentDefinition
+		xmlns="sap.m"
+		xmlns:core="sap.ui.core">
+	<ResponsivePopover
+			title="Shape Details"
+			class="sapUiPopupWithPadding"
+			placement="Auto">
+		<endButton>
+			<Button text="Close" press="onPressCloseButton"/>
+		</endButton>
+		<content>
+			<FlexBox direction="Column">
+				<FlexBox>
+					<Label text="Shape ID:" />
+				</FlexBox>
+				<FlexBox>
+					<Input id="shapeIdInput" editable="false" width="300px" tooltip="Shape ID"/>
+					<Button class="sapUiSmallMarginBegin" type="Emphasized" icon="sap-icon://copy"
+							press="onPressCopyButton('shapeIdInput')" tooltip="Copy shape ID to clipboard"/>
+				</FlexBox>
+			</FlexBox>
+			<FlexBox class="sapUiSmallMarginTop" direction="Column">
+				<FlexBox>
+					<Label text="XML Fragment:"/>
+				</FlexBox>
+				<FlexBox>
+					<TextArea id="shapeFragmentTextArea" width="300px" tooltip="XML Fragment" editable="false" growing="true" />
+					<Button class="sapUiSmallMarginBegin" type="Emphasized" icon="sap-icon://copy"
+							press="onPressCopyButton('shapeFragmentTextArea')" tooltip="Copy shape fragment to clipboard"/>
+				</FlexBox>
+			</FlexBox>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

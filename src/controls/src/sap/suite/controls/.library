@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<library xmlns="http://www.sap.com/sap.ui.library.xsd">
+
+	<name>sap.suite.controls</name>
+	<vendor>SAP SE</vendor>
+	<copyright>SAPUI5
+
+		(c) Copyright 2009-2019 SAP SE. All rights reserved
+	</copyright>
+	<version>${version}</version>
+
+	<documentation>UI5 library: sap.suite.controls</documentation>
+
+	<dependencies>
+		<dependency>
+			<libraryName>sap.ui.core</libraryName>
+		</dependency>
+	</dependencies>
+
+	<appData>
+		<!-- excludes for the JSDoc -->
+		<jsdoc xmlns="http://www.sap.com/ui5/buildext/jsdoc">
+			<exclude name="sap.suite.controls.js."/>
+		</jsdoc>
+		<!-- excludes for the JSCoverage -->
+		<jscoverage xmlns="http://www.sap.com/ui5/buildext/jscoverage">
+			<exclude name="sap.suite.controls.js."/>
+		</jscoverage>
+	</appData>
+
+</library>

@@ -1,0 +1,30 @@
+{
+	"name": "@openui5/sap.suite.testsuite",
+	"version": "1.64.0-SNAPSHOT",
+	"description": "TestSuite for Suite Library",
+	"author": "SAP SE (https://www.sap.com)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "node src/server.js"
+	},
+	"devDependencies": {
+		"@ui5/project": "^1.0.0",
+		"@ui5/server": "^1.0.0",
+		"fsp": "^0.1.2"
+	},
+	"private": true,
+	"dependencies": {
+		"@openui5/sap.f": "latest",
+		"@openui5/sap.m": "latest",
+		"@openui5/sap.tnt": "latest",
+		"@openui5/sap.ui.codeeditor": "latest",
+		"@openui5/sap.ui.core": "latest",
+		"@openui5/sap.ui.documentation": "latest",
+		"@openui5/sap.ui.unified": "latest",
+		"@openui5/sap.uxap": "latest",
+		"@openui5/themelib_sap_belize": "latest",
+		"@openui5/sap.ui.table": "latest",
+		"@openui5/sap.suite.statusindicator": "1.64.0-SNAPSHOT",
+		"@openui5/sap.suite.controls": "1.64.0-SNAPSHOT"
+	}
+}

@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+
+	<!--**************************************************************************
+	* POM SECTION: Maven Model Version Settings
+	***************************************************************************-->
+
+	<modelVersion>4.0.0</modelVersion>
+
+
+	<!--**************************************************************************
+	* POM SECTION: Parent POM Settings
+	***************************************************************************-->
+
+	<parent>
+		<groupId>com.sap.ui5</groupId>
+		<artifactId>maven-webapp-pom</artifactId>
+		<version>1.62.0-SNAPSHOT</version>
+		<relativePath></relativePath>
+	</parent>
+
+
+	<!--**************************************************************************
+	* POM SECTION: Maven Settings
+	***************************************************************************-->
+
+	<groupId>com.sap.openui5.suite</groupId>
+	<artifactId>testsuite</artifactId>
+	<version>1.62.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+
+	<!--**************************************************************************
+	* POM SECTION: Project Settings
+	***************************************************************************-->
+
+	<name>${project.artifactId}</name>
+	<description>TestSuite</description>
+
+
+	<!--**************************************************************************
+	* POM SECTION: Properties Settings
+	***************************************************************************-->
+
+	<properties>
+
+		<!-- Eclipse WTP Settings -->
+		<web.context.name>${project.artifactId}</web.context.name>
+
+
+		<!-- browser (chrome|internet explorer|firefox|safari|phantomjs) -->
+		<sap.ui5.selenium.qunit.browsers>firefox</sap.ui5.selenium.qunit.browsers> <!-- firefox because no installation required! -->
+
+		<!-- headless mode for browsers supporting it (e.g. chrome) -->
+		<sap.ui5.selenium.qunit.headless>false</sap.ui5.selenium.qunit.headless>
+
+		<!-- startpage -->
+		<sap.ui5.selenium.qunit.testpage>test-resources/qunit/testsuite.qunit.html</sap.ui5.selenium.qunit.testpage>
+
+		<!-- custom capabilities JSON file. requires an object for each browser containing the capabilities (https://code.google.com/p/selenium/wiki/JsonWireProtocol#Capabilities_JSON_Object) -->
+		<sap.ui5.selenium.qunit.capabilities.json>${basedir}/src/main/resources/capabilities.json</sap.ui5.selenium.qunit.capabilities.json>
+
+		<!-- coverage active or not -->
+		<sap.ui5.selenium.qunit.coverage>false</sap.ui5.selenium.qunit.coverage>
+
+		<!-- number of threads / parallelize test execution [ATTENTION: experimental!] -->
+		<sap.ui5.selenium.qunit.threads>1</sap.ui5.selenium.qunit.threads>
+
+
+		<!-- timeout for the cargo container -->
+		<sap.ui5.cargo.timeout>180000</sap.ui5.cargo.timeout>
+
+
+		<!-- SONAR: reuse existing reports / do not execute report generation again during sonar build -->
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+
+		<!-- SONAR: path, where the JSCoverage report is located -->
+		<sonar.javascript.jscoverage.reportPath>target/jscoverage/jscoverage.xml</sonar.javascript.jscoverage.reportPath>
+
+		<!-- SONAR: path, where the JSCoverage sources are located -->
+		<sonar.javascript.jscoverage.sourcePath>target/jscoverage/sources/</sonar.javascript.jscoverage.sourcePath>
+
+
+	</properties>
+
+
+	<!--**************************************************************************
+	* POM SECTION: DependencyManagement Settings
+	***************************************************************************-->
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.sap.ui5</groupId>
+				<artifactId>runtime-collection</artifactId>
+				<version>${sap.ui5.core.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.sap.ui5</groupId>
+				<artifactId>uilib-collection</artifactId>
+				<version>${sap.ui5.core.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
+	<!--**************************************************************************
+	* POM SECTION: Dependency Settings
+	***************************************************************************-->
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.sap.openui5.suite</groupId>
+			<artifactId>sap.openui5.suite</artifactId>
+			<version>1.62.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sap.openui5.suite</groupId>
+			<artifactId>sap.openui5.suite</artifactId>
+			<version>1.62.0-SNAPSHOT</version>
+			<classifier>testresources</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.sap.openui5.suite</groupId>
+			<artifactId>sap.openui5.suite</artifactId>
+			<version>1.62.0-SNAPSHOT</version>
+			<classifier>internal-testresources</classifier>
+		</dependency>
+
+		<!-- Core test resources incl. TestSuite -->
+		<dependency>
+			<groupId>com.sap.ui5</groupId>
+			<artifactId>core</artifactId>
+			<classifier>testresources</classifier>
+		</dependency>
+
+		<!-- demokit dependency for Showcase pages -->
+		<dependency>
+			<groupId>com.sap.ui5</groupId>
+			<artifactId>demokit-uilib</artifactId>
+			<version>${sap.ui5.core.version}</version>
+		</dependency>
+
+		<!-- JSCoverage stuff -->
+		<dependency>
+			<groupId>com.sap.ui5</groupId>
+			<artifactId>jscoverage</artifactId>
+			<version>${sap.ui5.core.version}</version>
+		</dependency>
+
+		<!-- Proxy servlet -->
+		<dependency>
+			<groupId>com.sap.ui5</groupId>
+			<artifactId>utils-internal</artifactId>
+			<version>${sap.ui5.core.version}</version>
+		</dependency>
+
+		<!-- SAPUI5 QUnit Utilities for Selenium (test dependency - only for Selenium) -->
+		<dependency>
+			<groupId>com.sap.ui5</groupId>
+			<artifactId>qunit-utils</artifactId>
+			<version>${sap.ui5.core.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+
+	<!--**************************************************************************
+	* POM SECTION: Profiles Settings
+	***************************************************************************-->
+
+	<profiles>
+
+		<!-- Profile to support workspace-maven-plugin usage	-->
+		<profile>
+
+			<id>workspace.runtime</id>
+
+			<activation>
+				<property>
+					<name>ui5workspace</name>
+				</property>
+			</activation>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.sap.ui5.tools.maven</groupId>
+						<artifactId>workspace-maven-plugin</artifactId>
+						<version>1.0.0-SNAPSHOT</version>
+						<configuration>
+							<!-- include the OpenUI5 utils for LessCompiler, VersionServlet, ... -->
+							<webXml>src/main/webapp/WEB-INF/web-workspace.xml</webXml>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+
+			<dependencies>
+				<!-- include the OpenUI5 utils for LessCompiler, VersionServlet, ... -->
+				<dependency>
+					<groupId>com.sap.openui5</groupId>
+					<artifactId>testsuite-utils</artifactId>
+					<version>${sap.ui5.core.version}</version>
+				</dependency>
+			</dependencies>
+
+		</profile>
+
+		<!-- Mac Default Profile -->
+		<profile>
+			<id>mac.test.build</id>
+			<activation>
+				<os>
+					<family>Mac</family>
+				</os>
+			</activation>
+			<properties>
+				<!-- TODO: requires webdriver - we should check for FireFox better! -->
+				<sap.ui5.selenium.qunit.browsers>safari</sap.ui5.selenium.qunit.browsers>
+			</properties>
+		</profile>
+
+		<!-- Headless Default Profile for Voters -->
+		<profile>
+			<id>voter.test.build</id>
+			<properties>
+				<sap.ui5.selenium.qunit.browsers>phantomjs</sap.ui5.selenium.qunit.browsers>
+			</properties>
+		</profile>
+
+		<!-- Only execute the Selenium Tests within the test build! -->
+		<profile>
+
+			<id>test.build</id>
+
+			<build>
+				<plugins>
+
+					<!-- use the build helper plugin to find random, unused TCP/IP ports -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>reserve-network-port</id>
+								<goals>
+									<goal>reserve-network-port</goal>
+								</goals>
+								<phase>process-resources</phase>
+								<configuration>
+									<portNames>
+										<portName>sap.ui5.selenium.dyn.port</portName>
+									</portNames>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+					<!-- create the tmpdir for the Jetty container -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>create-temp-dir</id>
+								<phase>process-resources</phase>
+								<configuration>
+									<target>
+										<delete dir="${project.build.directory}/temp/"/>
+										<mkdir dir="${project.build.directory}/temp/"/>
+									</target>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<!-- Usage of embedded Jetty for deploying test applications -->
+					<plugin>
+
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<version>1.4.13</version>
+
+						<executions>
+							<execution>
+								<id>start-container</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>start</goal><!-- start|run -->
+								</goals>
+							</execution>
+							<execution>
+								<id>stop-container</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>stop</goal>
+								</goals>
+							</execution>
+						</executions>
+
+						<configuration>
+							<container>
+								<containerId>jetty8x</containerId>
+								<type>embedded</type>
+								<systemProperties>
+									<java.io.tmpdir>${project.build.directory}/temp/</java.io.tmpdir>
+									<jscoverage.instrumentation.active>${sap.ui5.selenium.qunit.coverage}</jscoverage.instrumentation.active>
+									<jscoverage.sources.directory>${basedir}/${sonar.javascript.jscoverage.sourcePath}</jscoverage.sources.directory>
+								</systemProperties>
+								<timeout>${sap.ui5.cargo.timeout}</timeout>
+							</container>
+							<configuration>
+								<properties>
+									<cargo.servlet.port>${sap.ui5.selenium.dyn.port}</cargo.servlet.port>
+								</properties>
+							</configuration>
+							<deployables>
+								<deployable>
+									<location>${project.build.directory}/${project.build.finalName}.${project.packaging}</location>
+									<properties>
+										<context>${project.artifactId}</context>
+									</properties>
+								</deployable>
+							</deployables>
+						</configuration>
+
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>2.16</version>
+						<executions>
+							<execution>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>test</goal>
+								</goals>
+								<configuration>
+									<skip>${sap.ui5.selenium.skip}</skip>
+									<!-- the option "dependenciesToScan" requires at least v2.16 of the surefire plugin -->
+									<dependenciesToScan>
+										<dependency>com.sap.ui5:qunit-utils</dependency>
+									</dependenciesToScan>
+									<systemProperties>
+										<sap.ui5.selenium.dyn.port>${sap.ui5.selenium.dyn.port}</sap.ui5.selenium.dyn.port>
+										<sap.ui5.selenium.qunit.browsers>${sap.ui5.selenium.qunit.browsers}</sap.ui5.selenium.qunit.browsers>
+										<sap.ui5.selenium.qunit.headless>${sap.ui5.selenium.qunit.headless}</sap.ui5.selenium.qunit.headless>
+										<sap.ui5.selenium.qunit.coverage_browsers>${sap.ui5.selenium.qunit.coverage_browsers}</sap.ui5.selenium.qunit.coverage_browsers>
+										<sap.ui5.selenium.qunit.capabilities.json>${sap.ui5.selenium.qunit.capabilities.json}</sap.ui5.selenium.qunit.capabilities.json>
+										<sap.ui5.selenium.qunit.baseUrl>http://localhost:${sap.ui5.selenium.dyn.port}</sap.ui5.selenium.qunit.baseUrl>
+										<sap.ui5.selenium.qunit.contextPath>${project.artifactId}</sap.ui5.selenium.qunit.contextPath>
+										<sap.ui5.selenium.qunit.testpage>${sap.ui5.selenium.qunit.testpage}</sap.ui5.selenium.qunit.testpage>
+										<sap.ui5.selenium.qunit.urlparameters>${sap.ui5.selenium.qunit.urlparameters}</sap.ui5.selenium.qunit.urlparameters>
+										<sap.ui5.selenium.qunit.testsuite.prefix>${sap.ui5.selenium.qunit.testsuite.prefix}</sap.ui5.selenium.qunit.testsuite.prefix>
+										<sap.ui5.selenium.qunit.threads>${sap.ui5.selenium.qunit.threads}</sap.ui5.selenium.qunit.threads>
+										<sap.ui5.selenium.screenshot.dir>${project.build.directory}/screenshots</sap.ui5.selenium.screenshot.dir>
+										<sap.ui5.selenium.qunit.driver.initretries>${sap.ui5.selenium.qunit.driver.initretries}</sap.ui5.selenium.qunit.driver.initretries>
+										<sap.ui5.selenium.qunit.retries.error>${sap.ui5.selenium.qunit.retries.error}</sap.ui5.selenium.qunit.retries.error>
+										<jscoverage.reports.directory>${project.build.directory}/jscoverage</jscoverage.reports.directory>
+										<jscoverage.sources.directory>${basedir}/${sonar.javascript.jscoverage.sourcePath}</jscoverage.sources.directory>
+										<surefire.reports.directory>${project.build.directory}/surefire-reports</surefire.reports.directory>
+									</systemProperties>
+									<testFailureIgnore>true</testFailureIgnore> <!-- do not kill the build in case of failures -->
+									<forkCount>0</forkCount> <!-- disable VM forking to prevent that surefire keeps running when aborting a build on jenkins -->
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+
+		</profile>
+
+	</profiles>
+
+
+</project>

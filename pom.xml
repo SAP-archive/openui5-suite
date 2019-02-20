@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+
+  <!--**************************************************************************
+  * POM SECTION: Maven Model Version Settings
+  ***************************************************************************-->
+
+  <modelVersion>4.0.0</modelVersion>
+
+
+  <!--**************************************************************************
+  * POM SECTION: Parent POM Settings
+  ***************************************************************************-->
+
+  <parent>
+    <groupId>com.sap.ui5</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.0.5</version>
+    <relativePath/>
+  </parent>
+
+
+  <!--**************************************************************************
+  * POM SECTION: Maven Settings
+  ***************************************************************************-->
+
+  <groupId>com.sap.openui5.suite</groupId>
+  <artifactId>openui5-suite</artifactId>
+  <version>1.62.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+
+  <!--**************************************************************************
+  * POM SECTION: Project Settings
+  ***************************************************************************-->
+
+  <name>${project.artifactId}</name>
+  <description>${project.artifactId} - Reactor POM</description>
+
+
+  <!--**************************************************************************
+  * POM SECTION: Modules Settings
+  ***************************************************************************-->
+
+  <modules>
+    <module>src/statusindicator</module>
+    <module>src/controls</module>
+    <module>testsuite</module>
+  </modules>
+
+
+  <!--**************************************************************************
+  * POM SECTION: Profiles Settings
+  ***************************************************************************-->
+
+  <profiles>
+
+    <!--************************************************************************
+    *
+    * Development environment based on workspace-maven-plugin
+    * =======================================================
+    *
+    * Setup and Docu: https://github.wdf.sap.corp/D039071/workspace-maven-plugin
+    *
+    * Usage examples:
+    *  - Develop: mvn workspace:run -Dui5workspace -pl :testsuite
+    *  - Test: mvn clean verify -P workspace.runtime,test.build,voter.test.build
+    *
+    *************************************************************************-->
+
+    <!-- Include testsuite only in a test build (for SNAPSHOTS only) -->
+    <profile>
+      <id>test.build</id>
+      <activation>
+        <property>
+          <name>ui5workspace</name>
+        </property>
+      </activation>
+      <modules>
+        <module>testsuite</module>
+      </modules>
+    </profile>
+
+    <!-- Include SAPUI5 Core/Runtime into the reactor build (for workspace-maven-plugin) -->
+    <profile>
+      <id>sapui5.runtime.build</id>
+      <activation>
+        <property>
+          <name>ui5workspace</name>
+        </property>
+      </activation>
+      <modules>
+        <!-- sapui5.runtime project should be a sibling of the reactor project -->
+        <module>../sapui5.runtime</module>
+      </modules>
+    </profile>
+
+  </profiles>
+
+</project>
