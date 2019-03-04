@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+
+	<!--**************************************************************************
+	* POM SECTION: Maven Model Version Settings
+	*************************************************************************** -->
+
+	<modelVersion>4.0.0</modelVersion>
+
+
+	<!--**************************************************************************
+	* POM SECTION: Parent POM Settings
+	*************************************************************************** -->
+
+	<parent>
+		<groupId>com.sap.ui5</groupId>
+		<artifactId>library-parent</artifactId>
+		<version>1.62.0-SNAPSHOT</version>
+		<relativePath></relativePath>
+	</parent>
+
+
+	<!--**************************************************************************
+	* POM SECTION: Maven Settings
+	*************************************************************************** -->
+
+	<groupId>com.sap.openui5.suite</groupId>
+	<artifactId>sap.suite.statusindicator</artifactId>
+	<version>1.62.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+
+	<!--**************************************************************************
+	* POM SECTION: Project Settings
+	*************************************************************************** -->
+
+	<name>${project.artifactId}</name>
+	<description>UI5 library: sap.suite.statusindicator</description>
+
+
+	<!--**************************************************************************
+	* POM SECTION: Properties Settings
+	*************************************************************************** -->
+
+	<properties>
+
+		<!-- name of the UI5 library -->
+		<sap.ui5.library.name>sap.suite.statusindicator</sap.ui5.library.name>
+
+	</properties>
+
+
+	<!--**************************************************************************
+	* POM SECTION: Build Settings
+	*************************************************************************** -->
+
+	<build>
+
+		<plugins>
+
+			<plugin>
+				<groupId>com.sap.ui5.tools.build</groupId>
+				<artifactId>maven-coldwater-plugin</artifactId>
+				<executions>
+					<!-- check the platform constraints -->
+					<execution>
+						<id>verify-platform-constraints</id>
+						<configuration>
+							<failOnError>true</failOnError>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- mark as translation relevant -->
+			<!--
+			<plugin>
+				<groupId>com.sap.ldi</groupId>
+				<artifactId>translation-plugin</artifactId>
+				<configuration>
+					<translationArea>${sap.ui5.translationArea}</translationArea>
+					<translationDomain>${sap.ui5.translationDomain}</translationDomain>
+					<translationDeveloper>dXXXXXX</translationDeveloper>
+					<translationCollection>${sap.ui5.translationCollection}</translationCollection>
+				</configuration>
+			</plugin>
+			-->
+
+			<!-- sign request for the artifact -->
+			<!--
+			<plugin>
+				<groupId>com.sap.prd.codesign</groupId>
+				<artifactId>com.sap.prd.codesign.maven-jarsigner-plugin</artifactId>
+			</plugin>
+			-->
+
+		</plugins>
+
+	</build>
+
+
+	<!--**************************************************************************
+	* POM SECTION: DependencyManagement Settings
+	***************************************************************************-->
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.sap.ui5</groupId>
+				<artifactId>uilib-collection</artifactId>
+				<version>${sap.ui5.core.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
+	<!--**************************************************************************
+	* POM SECTION: Dependency Settings
+	*************************************************************************** -->
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.sap.ui5</groupId>
+			<artifactId>core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sap.ui5</groupId>
+			<artifactId>themelib_sap_belize</artifactId>
+		</dependency>
+
+	</dependencies>
+
+
+	<!--**************************************************************************
+	* POM SECTION: Profile Settings
+	*************************************************************************** -->
+
+	<profiles>
+
+		<!-- enable ESLint validation when profile is active -->
+		<profile>
+			<id>eslint.build</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.sap.eslint</groupId>
+						<artifactId>eslint-maven-plugin</artifactId>
+						<configuration>
+							<skip>false</skip>
+							<failOnError>true</failOnError>
+							<!-- version>1.6.0</version --> <!-- also defined via property: sap.ui5.eslint.version (which will affect all projects) -->
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+	</profiles>
+
+
+</project>

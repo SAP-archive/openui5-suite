@@ -1,0 +1,32 @@
+<mvc:View
+	controllerName="sap.suite.statusindicator.sample.StatusIndicatorSemanticColors.App"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:si="sap.suite.statusindicator"
+	height="100%">
+	<FlexBox direction="Column" alignItems="Start">
+		<items>
+			<Panel class="sapUiResponsiveMargin">
+				<headerToolbar>
+					<Toolbar>
+						<Title level="H2" text="Threshold Semantic Colors"/>
+					</Toolbar>
+				</headerToolbar>
+				<si:StatusIndicator id="indicator0" width="200px" height="150px" class="sapUiSmallMargin">
+					<si:ShapeGroup>
+						<si:Rectangle x="2" y="2" width="180" height="140" strokeWidth="1" fillingType="Linear"
+									  fillingColor="30" strokeColor="Neutral" />
+					</si:ShapeGroup>
+					<si:propertyThresholds>
+						<si:PropertyThreshold fillColor="Critical" toValue="60"/>
+						<si:PropertyThreshold fillColor="Error" toValue="30"/>
+						<si:PropertyThreshold fillColor="Good" toValue="100"/>
+					</si:propertyThresholds>
+				</si:StatusIndicator>
+			</Panel>
+		</items>
+	</FlexBox>
+	<Slider showAdvancedTooltip="true" enableTickmarks="true" change="valueChanged">
+		<ResponsiveScale tickmarksBetweenLabels="10"/>
+	</Slider>
+</mvc:View>

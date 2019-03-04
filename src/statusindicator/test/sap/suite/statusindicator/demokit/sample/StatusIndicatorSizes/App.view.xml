@@ -1,0 +1,258 @@
+<mvc:View
+	controllerName="sap.suite.statusindicator.sample.StatusIndicatorSizes.App"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:si="sap.suite.statusindicator"
+	height="100%">
+	<FlexBox direction="Column" alignItems="Start">
+		<items>
+			<!-- SHOWCASE OF SMALL SIZE -->
+			<Panel class="sapUiResponsiveMargin">
+				<headerToolbar>
+					<Toolbar>
+						<Title level="H2" text="Small Sizes"/>
+					</Toolbar>
+				</headerToolbar>
+				<FlexBox id="smallIndicators" height="auto" alignItems="Start" justifyContent="Start" direction="Row">
+					<items>
+						<si:StatusIndicator id="indicator21" value="50" size="Small" showLabel="true" labelPosition="Top">
+							<si:ShapeGroup>
+								<si:CustomShape id="customShape1" fillingType="Linear" />
+							</si:ShapeGroup>
+							<si:propertyThresholds>
+								<si:PropertyThreshold fillColor="Critical" toValue="60"/>
+								<si:PropertyThreshold fillColor="Error" toValue="30"/>
+								<si:PropertyThreshold fillColor="Good" toValue="100"/>
+							</si:propertyThresholds>
+							<si:discreteThresholds>
+								<si:DiscreteThreshold value="15"/>
+								<si:DiscreteThreshold value="30"/>
+								<si:DiscreteThreshold value="50"/>
+								<si:DiscreteThreshold value="70"/>
+								<si:DiscreteThreshold value="90"/>
+								<si:DiscreteThreshold value="100"/>
+							</si:discreteThresholds>
+						</si:StatusIndicator>
+						<si:StatusIndicator id="indicator23" value="100" size="Small" showLabel="true" labelPosition="Right">
+							<si:ShapeGroup>
+								<si:CustomShape id="customShape3" horizontalAlignment="Right" fillingType="Linear" fillingDirection="Down"
+												fillColor="sapPositiveColor" strokeColor="sapPositiveColor">
+									<si:fillingOptions>
+										<si:FillingOption shapeId="cereal-1" order="6"/>
+										<si:FillingOption shapeId="cereal-2" order="5"/>
+										<si:FillingOption shapeId="cereal-3" order="4"/>
+										<si:FillingOption shapeId="cereal-4" order="3"/>
+										<si:FillingOption shapeId="cereal-5" order="2"/>
+										<si:FillingOption shapeId="cereal-6" order="1"/>
+									</si:fillingOptions>
+								</si:CustomShape>
+							</si:ShapeGroup>
+						</si:StatusIndicator>
+						<si:StatusIndicator id="indicator22" value="0" size="Small" showLabel="true" labelPosition="Bottom">
+							<si:ShapeGroup>
+								<si:CustomShape id="customShape2" fillingType="Linear"/>
+							</si:ShapeGroup>
+							<si:propertyThresholds>
+								<si:PropertyThreshold fillColor="Critical" toValue="60"/>
+								<si:PropertyThreshold fillColor="Error" toValue="30"/>
+								<si:PropertyThreshold fillColor="Good" toValue="100"/>
+							</si:propertyThresholds>
+						</si:StatusIndicator>
+						<si:StatusIndicator id="indicator24" value="78" size="Small" showLabel="true" labelPosition="Left">
+							<si:ShapeGroup>
+								<si:CustomShape id="customShape4" horizontalAlignment="Left" fillingType="Linear"/>
+							</si:ShapeGroup>
+						</si:StatusIndicator>
+					</items>
+				</FlexBox>
+			</Panel>
+
+			<!-- SHOWCASE OF MEDIUM SIZE -->
+			<Panel class="sapUiResponsiveMargin">
+				<headerToolbar>
+					<Toolbar>
+						<Title level="H2" text="Medium Sizes"/>
+					</Toolbar>
+				</headerToolbar>
+				<FlexBox id="mediumIndicators" direction="Row">
+					<items>
+						<si:StatusIndicator id="indicator31" value="50" size="Medium" showLabel="true" labelPosition="Top">
+							<si:ShapeGroup>
+								<si:CustomShape id="customShape11" fillingType="Linear" />
+							</si:ShapeGroup>
+							<si:propertyThresholds>
+								<si:PropertyThreshold fillColor="Critical" toValue="60"/>
+								<si:PropertyThreshold fillColor="Error" toValue="30"/>
+								<si:PropertyThreshold fillColor="Good" toValue="100"/>
+							</si:propertyThresholds>
+							<si:discreteThresholds>
+								<si:DiscreteThreshold value="15"/>
+								<si:DiscreteThreshold value="30"/>
+								<si:DiscreteThreshold value="50"/>
+								<si:DiscreteThreshold value="70"/>
+								<si:DiscreteThreshold value="90"/>
+								<si:DiscreteThreshold value="100"/>
+							</si:discreteThresholds>
+						</si:StatusIndicator>
+						<si:StatusIndicator id="indicator33" value="100" size="Medium" showLabel="true" labelPosition="Right">
+							<si:ShapeGroup>
+								<si:CustomShape id="customShape13" horizontalAlignment="Right" fillingType="Linear" fillingDirection="Down"
+												fillColor="sapPositiveColor" strokeColor="sapPositiveColor">
+									<si:fillingOptions>
+										<si:FillingOption shapeId="cereal-1" order="6"/>
+										<si:FillingOption shapeId="cereal-2" order="5"/>
+										<si:FillingOption shapeId="cereal-3" order="4"/>
+										<si:FillingOption shapeId="cereal-4" order="3"/>
+										<si:FillingOption shapeId="cereal-5" order="2"/>
+										<si:FillingOption shapeId="cereal-6" order="1"/>
+									</si:fillingOptions>
+								</si:CustomShape>
+							</si:ShapeGroup>
+						</si:StatusIndicator>
+						<si:StatusIndicator id="indicator32" value="0" size="Medium" showLabel="true" labelPosition="Bottom">
+							<si:ShapeGroup>
+								<si:CustomShape id="customShape12" fillingType="Linear"/>
+							</si:ShapeGroup>
+							<si:propertyThresholds>
+								<si:PropertyThreshold fillColor="Critical" toValue="60"/>
+								<si:PropertyThreshold fillColor="Error" toValue="30"/>
+								<si:PropertyThreshold fillColor="Good" toValue="100"/>
+							</si:propertyThresholds>
+						</si:StatusIndicator>
+						<si:StatusIndicator id="indicator34" value="78" size="Medium" showLabel="true" labelPosition="Left">
+							<si:ShapeGroup>
+								<si:CustomShape id="customShape14" horizontalAlignment="Left" fillingType="Linear"/>
+							</si:ShapeGroup>
+						</si:StatusIndicator>
+					</items>
+				</FlexBox>
+			</Panel>
+
+			<!-- SHOWCASE OF LARGE SIZE -->
+			<Panel class="sapUiResponsiveMargin">
+				<headerToolbar>
+					<Toolbar>
+						<Title level="H2" text="Large Sizes"/>
+					</Toolbar>
+				</headerToolbar>
+				<FlexBox id="largeIndicators" direction="Row">
+					<items>
+						<si:StatusIndicator id="indicator41" value="50" size="Large" showLabel="true" labelPosition="Top">
+							<si:ShapeGroup>
+								<si:CustomShape id="customShape21" fillingType="Linear">
+								</si:CustomShape>
+							</si:ShapeGroup>
+							<si:propertyThresholds>
+								<si:PropertyThreshold fillColor="Critical" toValue="60"/>
+								<si:PropertyThreshold fillColor="Error" toValue="30"/>
+								<si:PropertyThreshold fillColor="Good" toValue="100"/>
+							</si:propertyThresholds>
+							<si:discreteThresholds>
+								<si:DiscreteThreshold value="15"/>
+								<si:DiscreteThreshold value="30"/>
+								<si:DiscreteThreshold value="50"/>
+								<si:DiscreteThreshold value="70"/>
+								<si:DiscreteThreshold value="90"/>
+								<si:DiscreteThreshold value="100"/>
+							</si:discreteThresholds>
+						</si:StatusIndicator>
+						<si:StatusIndicator id="indicator43" value="100" size="Large" showLabel="true" labelPosition="Right">
+							<si:ShapeGroup>
+								<si:CustomShape id="customShape23" horizontalAlignment="Right" fillingType="Linear" fillingDirection="Down"
+												fillColor="sapPositiveColor" strokeColor="sapPositiveColor">
+									<si:fillingOptions>
+										<si:FillingOption shapeId="cereal-1" order="6"/>
+										<si:FillingOption shapeId="cereal-2" order="5"/>
+										<si:FillingOption shapeId="cereal-3" order="4"/>
+										<si:FillingOption shapeId="cereal-4" order="3"/>
+										<si:FillingOption shapeId="cereal-5" order="2"/>
+										<si:FillingOption shapeId="cereal-6" order="1"/>
+									</si:fillingOptions>
+								</si:CustomShape>
+							</si:ShapeGroup>
+						</si:StatusIndicator>
+						<si:StatusIndicator id="indicator42" value="0" size="Large" showLabel="true" labelPosition="Bottom">
+							<si:ShapeGroup>
+								<si:CustomShape id="customShape22" fillingType="Linear"/>
+							</si:ShapeGroup>
+							<si:propertyThresholds>
+								<si:PropertyThreshold fillColor="Critical" toValue="60"/>
+								<si:PropertyThreshold fillColor="Error" toValue="30"/>
+								<si:PropertyThreshold fillColor="Good" toValue="100"/>
+							</si:propertyThresholds>
+						</si:StatusIndicator>
+						<si:StatusIndicator id="indicator44" value="78" size="Large" showLabel="true" labelPosition="Left">
+							<si:ShapeGroup>
+								<si:CustomShape id="customShape24" horizontalAlignment="Left" fillingType="Linear"/>
+							</si:ShapeGroup>
+						</si:StatusIndicator>
+					</items>
+				</FlexBox>
+			</Panel>
+
+			<!-- SHOWCASE OF EXTRA LARGE -->
+			<Panel class="sapUiResponsiveMargin">
+				<headerToolbar>
+					<Toolbar>
+						<Title level="H2" text="Extra Large Sizes"/>
+					</Toolbar>
+				</headerToolbar>
+				<FlexBox id="xlIndicators" direction="Row">
+					<items>
+						<si:StatusIndicator id="indicator51" value="50" size="ExtraLarge" showLabel="true" labelPosition="Top">
+							<si:ShapeGroup>
+								<si:CustomShape id="customShape31" fillingType="Linear" />
+							</si:ShapeGroup>
+							<si:propertyThresholds>
+								<si:PropertyThreshold fillColor="Critical" toValue="60"/>
+								<si:PropertyThreshold fillColor="Error" toValue="30"/>
+								<si:PropertyThreshold fillColor="Good" toValue="100"/>
+							</si:propertyThresholds>
+							<si:discreteThresholds>
+								<si:DiscreteThreshold value="15"/>
+								<si:DiscreteThreshold value="30"/>
+								<si:DiscreteThreshold value="50"/>
+								<si:DiscreteThreshold value="70"/>
+								<si:DiscreteThreshold value="90"/>
+								<si:DiscreteThreshold value="100"/>
+							</si:discreteThresholds>
+						</si:StatusIndicator>
+						<si:StatusIndicator id="indicator53" value="100" size="ExtraLarge" showLabel="true" labelPosition="Right">
+							<si:ShapeGroup>
+								<si:CustomShape id="customShape33" horizontalAlignment="Right" fillingType="Linear" fillingDirection="Down"
+												fillColor="sapPositiveColor" strokeColor="sapPositiveColor">
+									<si:fillingOptions>
+										<si:FillingOption shapeId="cereal-1" order="6"/>
+										<si:FillingOption shapeId="cereal-2" order="5"/>
+										<si:FillingOption shapeId="cereal-3" order="4"/>
+										<si:FillingOption shapeId="cereal-4" order="3"/>
+										<si:FillingOption shapeId="cereal-5" order="2"/>
+										<si:FillingOption shapeId="cereal-6" order="1"/>
+									</si:fillingOptions>
+								</si:CustomShape>
+							</si:ShapeGroup>
+						</si:StatusIndicator>
+						<si:StatusIndicator id="indicator52" value="0" size="ExtraLarge" showLabel="true" labelPosition="Bottom">
+							<si:ShapeGroup>
+								<si:CustomShape id="customShape32" fillingType="Linear"/>
+							</si:ShapeGroup>
+							<si:propertyThresholds>
+								<si:PropertyThreshold fillColor="Critical" toValue="60"/>
+								<si:PropertyThreshold fillColor="Error" toValue="30"/>
+								<si:PropertyThreshold fillColor="Good" toValue="100"/>
+							</si:propertyThresholds>
+						</si:StatusIndicator>
+						<si:StatusIndicator id="indicator54" value="78" size="ExtraLarge" showLabel="true" labelPosition="Left">
+							<si:ShapeGroup>
+								<si:CustomShape id="customShape34" horizontalAlignment="Left" fillingType="Linear"/>
+							</si:ShapeGroup>
+						</si:StatusIndicator>
+					</items>
+				</FlexBox>
+			</Panel>
+		</items>
+	</FlexBox>
+	<Slider showAdvancedTooltip="true" enableTickmarks="true" change="valueChanged">
+		<ResponsiveScale tickmarksBetweenLabels="10"/>
+	</Slider>
+</mvc:View>

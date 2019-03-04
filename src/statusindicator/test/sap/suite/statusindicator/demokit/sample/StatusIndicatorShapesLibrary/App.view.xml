@@ -1,0 +1,56 @@
+<mvc:View
+		controllerName="sap.suite.statusindicator.sample.StatusIndicatorShapesLibrary.App"
+		xmlns="sap.m"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:si="sap.suite.statusindicator"
+		xmlns:html="http://www.w3.org/1999/xhtml"
+		height="100%">
+	<html:style>
+		.SICursorStyle:hover {
+			cursor: pointer;
+		}
+		.SIBorderStyle {
+			border: 1px solid #cccccc;
+		}
+		.SIPanelStyle .sapMPanelContent{
+			overflow: visible;
+		}
+	</html:style>
+	<Panel width="auto" class="sapUiResponsiveMargin SIPanelStyle">
+		<headerToolbar>
+			<Toolbar>
+				<Title level="H2" text="Shapes from Library:"/>
+			</Toolbar>
+		</headerToolbar>
+		<Text text="Use the slider for adjusting the fill"/>
+		<FlexBox>
+			<Slider class="sapUiLargeMarginBottom" showAdvancedTooltip="true" enableTickmarks="true" value="{settingsData>/value}">
+				<ResponsiveScale tickmarksBetweenLabels="10"/>
+				<layoutData>
+					<FlexItemData growFactor="1"/>
+				</layoutData>
+			</Slider>
+		</FlexBox>
+		<Text class="sapUiSmallMarginTop" text="For more information click or tap the shape"/>
+		<FlexBox wrap="Wrap" items="{/shapes}">
+			<items>
+				<FlexBox direction="Column" class="sapUiTinyMargin SIBorderStyle">
+					<items>
+						<si:StatusIndicator value="{settingsData>/value}" width="120px" height="120px" class="sapUiTinyMargin SICursorStyle"
+											press="onPressStatusIndicator">
+							<si:propertyThresholds>
+								<si:PropertyThreshold fillColor="Error" toValue="25"/>
+								<si:PropertyThreshold fillColor="Critical" toValue="60"/>
+								<si:PropertyThreshold fillColor="Good" toValue="100"/>
+							</si:propertyThresholds>
+							<si:ShapeGroup>
+								<si:LibraryShape shapeId="{id}"/>
+							</si:ShapeGroup>
+						</si:StatusIndicator>
+						<Label text="{id}" width="120px" textAlign="Center" class="sapUiTinyMargin"/>
+					</items>
+				</FlexBox>
+			</items>
+		</FlexBox>
+	</Panel>
+</mvc:View>
