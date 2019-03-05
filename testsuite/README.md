@@ -18,7 +18,7 @@ yarn install
 
 ## Running the Project
 
-In this folder run:
+In `testsuite` folder run:
 
 ```bash
 ui5 serve 
