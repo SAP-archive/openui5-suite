@@ -27,7 +27,7 @@
 
   <groupId>com.sap.openui5.suite</groupId>
   <artifactId>openui5-suite</artifactId>
-  <version>1.65.0-SNAPSHOT</version>
+  <version>1.66.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
 
@@ -53,19 +53,6 @@
   ***************************************************************************-->
 
   <profiles>
-
-    <!--************************************************************************
-    *
-    * Development environment based on workspace-maven-plugin
-    * =======================================================
-    *
-    * Setup and Docu: https://github.wdf.sap.corp/D039071/workspace-maven-plugin
-    *
-    * Usage examples:
-    *  - Develop: mvn workspace:run -Dui5workspace -pl :testsuite
-    *  - Test: mvn clean verify -P workspace.runtime,test.build,voter.test.build
-    *
-    *************************************************************************-->
 
     <!-- Include testsuite only in a test build (for SNAPSHOTS only) -->
     <profile>
