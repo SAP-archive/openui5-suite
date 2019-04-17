@@ -1,0 +1,25 @@
+dist: trusty
+language: node_js
+node_js:
+  - "8"
+env:
+  global:
+  - GH_ORG="SAP"
+  - GH_USER="vvopenka"
+  - GH_EMAIL="vaclav.vopenka@sap.com"
+  - REPO="openui5-suite"
+  - GH_REPO="github.com/${GH_ORG}/${REPO}.git"
+install: true
+jobs:
+  include:
+    - stage: test
+      script: 
+        - npm test
+    - stage: deploy
+      if: branch = master AND type = push
+      after_success:
+        - git remote
+        - git config user.email ${GH_EMAIL}
+        - git config user.name ${GH_USER}
+        - git checkout master
+        - git push "https://${GITHUB_PRIVATE_TOKEN}@${GH_REPO}" master > /dev/null 2>&1
