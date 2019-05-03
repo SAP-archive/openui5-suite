@@ -2,85 +2,262 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 
-  <!--**************************************************************************
-  * POM SECTION: Maven Model Version Settings
-  ***************************************************************************-->
+	<!--**************************************************************************
+	* POM SECTION: Maven Model Version Settings
+	***************************************************************************-->
 
-  <modelVersion>4.0.0</modelVersion>
-
-
-  <!--**************************************************************************
-  * POM SECTION: Parent POM Settings
-  ***************************************************************************-->
-
-  <parent>
-    <groupId>com.sap.ui5</groupId>
-    <artifactId>parent</artifactId>
-    <version>1.0.5</version>
-    <relativePath/>
-  </parent>
+	<modelVersion>4.0.0</modelVersion>
 
 
-  <!--**************************************************************************
-  * POM SECTION: Maven Settings
-  ***************************************************************************-->
+	<!--**************************************************************************
+	* POM SECTION: Maven Settings
+	***************************************************************************-->
 
-  <groupId>com.sap.openui5.suite</groupId>
-  <artifactId>openui5-suite</artifactId>
-  <version>1.66.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
-
-
-  <!--**************************************************************************
-  * POM SECTION: Project Settings
-  ***************************************************************************-->
-
-  <name>${project.artifactId}</name>
-  <description>${project.artifactId} - Reactor POM</description>
+	<groupId>com.sap.openui5.suite</groupId>
+	<artifactId>reactor</artifactId>
+	<version>1.66.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
 
-  <!--**************************************************************************
-  * POM SECTION: Modules Settings
-  ***************************************************************************-->
+	<!--**************************************************************************
+	* POM SECTION: Project Settings
+	***************************************************************************-->
 
-  <modules>
-    <module>src/statusindicator</module>
-  </modules>
+	<name>OpenUI5 Suite</name>
+	<description>OpenUI5 Suite - Reactor POM</description>
 
 
-  <!--**************************************************************************
-  * POM SECTION: Profiles Settings
-  ***************************************************************************-->
+	<!--**************************************************************************
+	* POM SECTION: Modules Settings
+	***************************************************************************-->
 
-  <profiles>
+	<modules>
 
-    <!-- Include testsuite only in a test build (for SNAPSHOTS only) -->
-    <profile>
-      <id>test.build</id>
-      <activation>
-        <property>
-          <name>ui5workspace</name>
-        </property>
-      </activation>
-      <modules>
-        <module>testsuite</module>
-      </modules>
-    </profile>
+		<!-- UI libraries -->
+		<module>src/statusindicator</module>
 
-    <!-- Include SAPUI5 Core/Runtime into the reactor build (for workspace-maven-plugin) -->
-    <profile>
-      <id>sapui5.runtime.build</id>
-      <activation>
-        <property>
-          <name>ui5workspace</name>
-        </property>
-      </activation>
-      <modules>
-        <!-- sapui5.runtime project should be a sibling of the reactor project -->
-        <module>../sapui5.runtime</module>
-      </modules>
-    </profile>
+	</modules>
 
-  </profiles>
+
+	<!--**************************************************************************
+	* POM SECTION: Properties Settings
+	***************************************************************************-->
+
+	<properties>
+
+		<!-- default encoding is UTF-8 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- default compiler level is 1.6 -->
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+
+		<!-- filtering properties -->
+		<version>${project.version}</version>
+		<copyright><![CDATA[OpenUI5
+ * (c) Copyright 2009-2019 SAP SE or an SAP affiliate company.
+ * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
+]]></copyright>
+		<buildtime>${maven.build.timestamp}</buildtime>
+		<lastchange></lastchange><!-- TODO: fill via build parameter -->
+
+		<!-- JSLint/ESLint report path -->
+		<sonar.javascript.jslint.reportPath>target/jslint/jslint.xml</sonar.javascript.jslint.reportPath>
+
+ 	</properties>
+
+
+	<!--**************************************************************************
+	* POM SECTION: Build Settings
+	***************************************************************************-->
+
+	<build>
+
+		<plugins>
+
+			<!-- specify the delimiters for the filtering -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<!-- list of used binary types (must not be filtered) -->
+					<nonFilteredFileExtensions>
+						<extension>ttf</extension>
+						<extension>eot</extension>
+						<extension>gif</extension>
+						<extension>png</extension>
+						<extension>ico</extension>
+						<extension>swf</extension>
+						<extension>wav</extension>
+						<extension>properties</extension><!-- excluded as those files don't use UTF-8 encoding and as no filtering is needed -->
+						<extension>woff</extension>
+						<extension>woff2</extension>
+						<extension>hpb</extension><!-- hyphenation pattern binary (introduced by OSS component 'hyphenopoly') -->
+						<extension>wasm</extension><!-- web assembly, compiled binary -->
+					</nonFilteredFileExtensions>
+
+					<!--
+						With the default delimiter settings, filtering fails for lines with an odd number of delimiter chars
+						like in
+
+						  @version @version@
+
+						We therefore disable the defaults and use only ${*}.
+
+					  -->
+					<useDefaultDelimiters>false</useDefaultDelimiters>
+					<delimiters>
+						<delimiter>${*}</delimiter>
+					</delimiters>
+
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+
+	<!--**************************************************************************
+	* POM SECTION: Profile Settings
+	***************************************************************************-->
+
+	<profiles>
+
+		<!-- attach the LICENSE.txt file -->
+		<profile>
+
+			<activation>
+				<file>
+					<exists>${basedir}/LICENSE.txt</exists>
+				</file>
+			</activation>
+
+			<build>
+
+				<plugins>
+
+					<!-- attach the LICENSE.txt as separate artifact -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<version>1.9.1</version>
+						<executions>
+							<execution>
+								<id>attach-artifacts</id>
+								<phase>package</phase>
+								<goals>
+									<goal>attach-artifact</goal>
+								</goals>
+								<configuration>
+									<artifacts>
+										<artifact>
+											<file>${basedir}/LICENSE.txt</file>
+											<type>txt</type>
+											<classifier>LICENSE</classifier>
+										</artifact>
+									</artifacts>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+
+			</build>
+
+		</profile>
+
+		<profile>
+
+			<id>eslint.build</id>
+
+			<properties>
+
+				<!-- skip eslint validation -->
+				<sap.ui5.eslint.skip.validation>true</sap.ui5.eslint.skip.validation>
+
+				<!-- fail on eslint error -->
+				<sap.ui5.eslint.failonerror>true</sap.ui5.eslint.failonerror>
+
+				<!-- only validate the changed files -->
+				<sap.ui5.eslint.onlyChangedFiles>true</sap.ui5.eslint.onlyChangedFiles>
+
+			</properties>
+
+			<build>
+				<plugins>
+					<!-- when adopting the plugin here please also adopt src/testsuite/pom.xml -->
+					<plugin>
+						<groupId>com.sap.eslint</groupId>
+						<artifactId>eslint-maven-plugin</artifactId>
+						<version>0.1.14</version>
+						<executions>
+							<execution>
+								<phase>verify</phase>
+								<goals>
+									<goal>eslint</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<version>1.10.3</version>
+							<skip>${sap.ui5.eslint.skip.validation}</skip>
+							<failOnError>${sap.ui5.eslint.failonerror}</failOnError>
+							<onlyChangedFiles>${sap.ui5.eslint.onlyChangedFiles}</onlyChangedFiles>
+							<quiet>true</quiet>
+							<includes>
+								<include>src/**</include>
+								<include>test/**</include>
+							</includes>
+							<formatters>
+								<formatter implementation="com.sap.eslint.java.formatters.JSLintSonarFormatter">
+									<outputFile>${project.build.directory}/jslint/jslint.xml</outputFile>
+								</formatter>
+							</formatters>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+
+		</profile>
+
+		<profile>
+
+			<id>nightly.build</id>
+
+			<properties>
+
+				<!-- validate all files for the nightly build (attention: profile nightly.build must stay after eslint.build!) -->
+				<sap.ui5.eslint.onlyChangedFiles>false</sap.ui5.eslint.onlyChangedFiles>
+
+			</properties>
+
+		</profile>
+
+		<profile>
+
+			<id>testsuite.build</id>
+
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>ui5workspace</name>
+				</property>
+			</activation>
+
+			<modules>
+
+				<!-- testsuite -->
+				<module>src/testsuite-utils</module>
+				<module>src/testsuite</module>
+
+			</modules>
+
+		</profile>
+
+	</profiles>
 
 </project>
