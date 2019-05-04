@@ -1,3 +1,6 @@
+/*!
+ * ${copyright}
+ */
 
 sap.ui.define([
 	"sap/ui/core/theming/Parameters",

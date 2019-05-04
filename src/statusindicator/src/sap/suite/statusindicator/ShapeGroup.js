@@ -2,6 +2,8 @@
  * ${copyright}
  */
 
+/*global performance */
+
 sap.ui.define([
 	"sap/ui/core/Control",
 	"sap/ui/core/Core",

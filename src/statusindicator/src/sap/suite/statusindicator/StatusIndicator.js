@@ -85,11 +85,17 @@ sap.ui.define([
 					 */
 					size: {type: "sap.suite.statusindicator.SizeType", defaultValue: SizeType.None},
 
+					/**
+					 * TODO: describe propery here
+					 */
 					labelPosition: {
 						type: "sap.suite.statusindicator.LabelPositionType",
 						defaultValue: LabelPositionType.Left
 					},
 
+					/**
+					 * TODO: describe propery here
+					 */
 					showLabel: {type: "boolean", defaultValue: false}
 				},
 				defaultAggregation: "groups",
@@ -136,6 +142,9 @@ sap.ui.define([
 						multiple: true
 					},
 
+					/**
+					 * TODO: describe aggregation here
+					 */
 					label: {
 						type: "sap.m.Text",
 						multiple: false

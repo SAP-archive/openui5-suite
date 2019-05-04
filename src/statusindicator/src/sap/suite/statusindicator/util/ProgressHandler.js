@@ -1,4 +1,8 @@
-/* globals Promise:true */
+/*!
+ * ${copyright}
+ */
+
+ /* globals Promise:true */
 
 sap.ui.define([], function () {
 	"use strict";

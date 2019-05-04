@@ -1,4 +1,8 @@
-sap.ui.define([
+/*!
+ * ${copyright}
+ */
+
+ sap.ui.define([
 	"sap/suite/statusindicator/Shape",
 	"sap/suite/statusindicator/ShapeGroup",
 	"sap/suite/statusindicator/CustomShape",

@@ -19,7 +19,7 @@ sap.ui.define([], function () {
 	// delegate further initialization of this library to the Core
 	sap.ui.getCore().initLibrary({
 		name: "sap.suite.statusindicator",
-		dependencies: ["sap.ui.core"],
+		dependencies: ["sap.ui.core"], // lazy also to sap.m since controls are used!
 		types: [
 			"sap.suite.statusindicator.FillingType",
 			"sap.suite.statusindicator.FillingDirectionType",
@@ -42,6 +42,7 @@ sap.ui.define([], function () {
 	 *
 	 * @public
 	 * @enum {string}
+	 * @ui5-metamodel This control/element will also be described in the UI5 (legacy) design time metamodel.
 	 */
 	sap.suite.statusindicator.FillingType = {
 
@@ -86,6 +87,7 @@ sap.ui.define([], function () {
 	 *
 	 * @public
 	 * @enum {string}
+	 * @ui5-metamodel This control/element will also be described in the UI5 (legacy) design time metamodel.
 	 */
 	sap.suite.statusindicator.FillingDirectionType = {
 
@@ -137,6 +139,7 @@ sap.ui.define([], function () {
 	 *
 	 * @public
 	 * @enum {string}
+	 * @ui5-metamodel This control/element will also be described in the UI5 (legacy) design time metamodel.
 	 */
 	sap.suite.statusindicator.HorizontalAlignmentType = {
 
@@ -167,6 +170,7 @@ sap.ui.define([], function () {
 	 *
 	 * @public
 	 * @enum {string}
+	 * @ui5-metamodel This control/element will also be described in the UI5 (legacy) design time metamodel.
 	 */
 	sap.suite.statusindicator.LabelPositionType = {
 
@@ -204,6 +208,7 @@ sap.ui.define([], function () {
 	 *
 	 * @public
 	 * @enum {string}
+	 * @ui5-metamodel This control/element will also be described in the UI5 (legacy) design time metamodel.
 	 */
 	sap.suite.statusindicator.SizeType = {
 
@@ -247,6 +252,7 @@ sap.ui.define([], function () {
 	 *
 	 * @public
 	 * @enum {string}
+	 * @ui5-metamodel This control/element will also be described in the UI5 (legacy) design time metamodel.
 	 */
 	sap.suite.statusindicator.VerticalAlignmentType = {
 

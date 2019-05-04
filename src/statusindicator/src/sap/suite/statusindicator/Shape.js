@@ -87,7 +87,7 @@ sap.ui.define([
 					 * Specifies the delay of the initial value animation. Only applicable if the
 					 * <code>animationOnStartup</code> property is set to <code>true</code>.
 					 *
-					 * @deprecated
+					 * @deprecated Since version 1.66.0.
 					 */
 					animationOnStartupDelay: {type: "int", defaultValue: 0},
 
@@ -118,7 +118,7 @@ sap.ui.define([
 					 */
 					fillingAngle: {
 						type: "int",
-						defaultValue: undefined
+						defaultValue: 0
 					},
 
 					/**
