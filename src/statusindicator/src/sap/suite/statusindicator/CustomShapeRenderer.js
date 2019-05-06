@@ -26,8 +26,7 @@ sap.ui.define([
 	 * @returns {void}
 	 */
 	CustomShapeRenderer.render = function (oRm, oControl) {
-		oRm.openStart("svg");
-		oRm.controlData(oControl);
+		oRm.openStart("svg", oControl);
 		oRm.attr("version", "1.1");
 		oRm.attr("xlmns", "http://www.w3.org/2000/svg");
 

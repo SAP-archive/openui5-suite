@@ -31,7 +31,7 @@ sap.ui.define([
 	SimpleShapeRenderer.render = function (oRm, oControl) {
 		var sMaskId = oControl._buildIdString(oControl.getId(), "mask");
 
-		oRm.openStart("svg"); //Root
+		oRm.openStart("svg", oControl); //Root
 		oRm.attr("xlmns", "http://www.w3.org/2000/svg");
 
 		var sInternalViewBox = oControl._getInternalViewBox();
@@ -40,7 +40,6 @@ sap.ui.define([
 		}
 		oRm.attr("preserveAspectRatio", oControl._buildPreserveAspectRatioAttribute());
 		oRm.attr("overflow", "visible");
-		oRm.controlData(oControl);
 		oRm.openEnd(); //Root
 
 		oRm.openStart("defs").openEnd(); //Defs

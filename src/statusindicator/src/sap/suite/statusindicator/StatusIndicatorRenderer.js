@@ -71,8 +71,7 @@ sap.ui.define([
 		var bIsRowOriented = sLabelPosition === LabelPositionType.Left || sLabelPosition === LabelPositionType.Right,
 			bIsLabelFirst = sLabelPosition === LabelPositionType.Left || sLabelPosition === LabelPositionType.Top;
 
-		oRm.openStart("div"); //Root
-		oRm.controlData(oStatusIndicator);
+		oRm.openStart("div", oStatusIndicator); //Root
 		oRm.class("sapSuiteStatusIndicator");
 		oRm.attr("role", "progressbar");
 		oRm.attr("aria-roledescription", resourceBundle.getText("STATUS_INDICATOR_ARIA_ROLE_DESCRIPTION"));
