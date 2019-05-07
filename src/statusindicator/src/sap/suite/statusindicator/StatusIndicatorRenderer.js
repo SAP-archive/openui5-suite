@@ -63,7 +63,7 @@ sap.ui.define([
 	 *
 	 * @param {sap.ui.core.RenderManager} oRm
 	 *            The RenderManager that can be used for writing to the render output buffer.
-	 * @param {sap.suite.statusindicator.StatusIndicator} oControl
+	 * @param {sap.suite.statusindicator.StatusIndicator} oStatusIndicator
 	 *            An object representation of the control that should be rendered.
 	 */
 	StatusIndicatorRenderer.render = function (oRm, oStatusIndicator) {
@@ -72,6 +72,10 @@ sap.ui.define([
 			bIsLabelFirst = sLabelPosition === LabelPositionType.Left || sLabelPosition === LabelPositionType.Top;
 
 		oRm.openStart("div", oStatusIndicator); //Root
+		if (oRm.controlData) {
+			// use older API until it gets propagated to npm
+			oRm.controlData(oStatusIndicator);
+		}
 		oRm.class("sapSuiteStatusIndicator");
 		oRm.attr("role", "progressbar");
 		oRm.attr("aria-roledescription", resourceBundle.getText("STATUS_INDICATOR_ARIA_ROLE_DESCRIPTION"));
@@ -95,7 +99,7 @@ sap.ui.define([
 		oRm.attr("tabindex", "0");
 		oRm.attr("aria-valuemin", 0);
 		oRm.attr("aria-valuemax", 100);
-		oRm.class(bIsRowOriented ? "sapSuiteStatusIndicatorHorizontal" : "sapSuiteStatusIndicatorVertical")
+		oRm.class(bIsRowOriented ? "sapSuiteStatusIndicatorHorizontal" : "sapSuiteStatusIndicatorVertical");
 		oRm.openEnd(); //Root
 
 		if (oStatusIndicator.getShowLabel()) {
@@ -151,4 +155,4 @@ sap.ui.define([
 
 	return StatusIndicatorRenderer;
 
-}, true);
+});

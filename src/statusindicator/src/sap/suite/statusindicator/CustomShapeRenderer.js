@@ -27,6 +27,10 @@ sap.ui.define([
 	 */
 	CustomShapeRenderer.render = function (oRm, oControl) {
 		oRm.openStart("svg", oControl);
+		if (oRm.controlData) {
+			// use older API until it gets propagated to npm
+			oRm.controlData(oControl);
+		}
 		oRm.attr("version", "1.1");
 		oRm.attr("xlmns", "http://www.w3.org/2000/svg");
 
@@ -56,5 +60,4 @@ sap.ui.define([
 	};
 
 	return CustomShapeRenderer;
-
-}, true);
+});

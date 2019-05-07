@@ -174,4 +174,4 @@
 	};
 
 	return AnimationPropertiesResolver;
-}, true);
+});

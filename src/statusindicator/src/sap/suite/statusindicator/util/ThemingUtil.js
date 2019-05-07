@@ -4,11 +4,13 @@
 
 sap.ui.define([
 	"sap/ui/core/theming/Parameters",
-	"sap/m/ValueCSSColor",
-	"sap/ui/core/CSSColor",
-	"sap/m/ValueColor"
-], function (Parameters, ValueCSSColor, CSSColor, ValueColor) {
+	"sap/ui/core/library",
+	"sap/m/library"
+], function (Parameters, coreLibrary, mLibrary) {
 	"use strict";
+
+	var CSSColor = coreLibrary.CSSColor,
+		ValueColor = mLibrary.ValueColor;
 
 	var ThemingUtil = function() {
 		throw new Error();
@@ -34,4 +36,4 @@ sap.ui.define([
 	};
 
 	return ThemingUtil;
-}, true);
+});

@@ -33,9 +33,8 @@ sap.ui.define([
 	 *
 	 * @author SAP SE
 	 * @version ${version}
-	 * @since 1.50
+	 * @since 1.66
 	 *
-	 * @constructor
 	 * @public
 	 * @alias sap.suite.statusindicator.Shape
 	 * @ui5-metamodel This control/element will also be described in the UI5 (legacy) design time metamodel.
@@ -166,6 +165,12 @@ sap.ui.define([
 			Control.prototype.init.apply(this, arguments);
 		}
 		this._oAnimationPropertiesResolver = null;
+		this._bFillingAngleSet = false;
+	};
+
+	Shape.prototype.setFillingAngle = function (iFillingAngle) {
+		this.setProperty("fillingAngle", iFillingAngle);
+		this._bFillingAngleSet = true;
 	};
 
 	Shape.prototype.onBeforeRendering = function () {
@@ -227,7 +232,7 @@ sap.ui.define([
 	};
 
 	Shape.prototype.computeLinearFillingAngle = function () {
-		if (this.getFillingAngle() !== undefined) {
+		if (this._bFillingAngleSet) {
 			return this._getNormalizedFillingAngle();
 		}
 
@@ -465,10 +470,6 @@ sap.ui.define([
 	};
 
 	Shape.prototype._getNormalizedFillingAngle = function () {
-		if (this.getFillingAngle() === undefined) {
-			return this.getFillingAngle();
-		}
-
 		var iResult = this.getFillingAngle() % 360;
 		if (iResult < 0) {
 			// transform negative angle to supplement to 360
@@ -484,8 +485,7 @@ sap.ui.define([
 
 	Shape.prototype._getDisplayedGradientOffset = function (iDisplayedValue) {
 		if (this.isFillable()) {
-			var result = iDisplayedValue / 100;
-			return result;
+			return iDisplayedValue / 100;
 		} else {
 			return 1; // fill it all!
 		}
@@ -503,8 +503,7 @@ sap.ui.define([
 	};
 
 	Shape.prototype._buildIdString = function () {
-		var sConcatenatedIds = jQuery.makeArray(arguments).join("-");
-		return sConcatenatedIds;
+		return jQuery.makeArray(arguments).join("-");
 	};
 
 	function createPoint(iX, iY) {
@@ -512,5 +511,4 @@ sap.ui.define([
 	}
 
 	return Shape;
-
 });

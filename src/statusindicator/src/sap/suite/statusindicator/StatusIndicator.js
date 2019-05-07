@@ -41,9 +41,8 @@ sap.ui.define([
 	 *
 	 * @author SAP SE
 	 * @version ${version}
-	 * @since 1.50
+	 * @since 1.66
 	 *
-	 * @constructor
 	 * @public
 	 * @alias sap.suite.statusindicator.StatusIndicator
 	 * @ui5-metamodel This control/element will also be described in the UI5 (legacy) design time metamodel.
@@ -86,7 +85,7 @@ sap.ui.define([
 					size: {type: "sap.suite.statusindicator.SizeType", defaultValue: SizeType.None},
 
 					/**
-					 * TODO: describe propery here
+					 * Defines label location. This option is used only if <code>showLabel</code> is set to <code>true</code>.
 					 */
 					labelPosition: {
 						type: "sap.suite.statusindicator.LabelPositionType",
@@ -94,7 +93,7 @@ sap.ui.define([
 					},
 
 					/**
-					 * TODO: describe propery here
+					 * Determines if the status indicator should display a label.
 					 */
 					showLabel: {type: "boolean", defaultValue: false}
 				},
@@ -143,7 +142,8 @@ sap.ui.define([
 					},
 
 					/**
-					 * TODO: describe aggregation here
+					 * A label to use instead of automatically generated label. If you define <code>showLable</code> to
+					 * <code>false</code> you can use this aggregation to render a label in a different position.
 					 */
 					label: {
 						type: "sap.m.Text",

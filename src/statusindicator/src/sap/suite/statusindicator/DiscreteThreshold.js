@@ -3,8 +3,8 @@
  */
 
 sap.ui.define([
-	"sap/ui/core/Control"
-], function (Control) {
+	"sap/ui/core/Element"
+], function (Element) {
 	"use strict";
 
 	/**
@@ -15,18 +15,17 @@ sap.ui.define([
 	 *
 	 * @class
 	 * Discrete threshold specifies which values should be displayed by the status indicator.
-	 * @extends sap.ui.core.Control
+	 * @extends sap.ui.core.Element
 	 *
 	 * @author SAP SE
 	 * @version ${version}
-	 * @since 1.50
+	 * @since 1.66
 	 *
-	 * @constructor
 	 * @public
 	 * @alias sap.suite.statusindicator.DiscreteThreshold
 	 * @ui5-metamodel This control/element will also be described in the UI5 (legacy) design time metamodel.
 	 */
-	var DiscreteThreshold = Control.extend("sap.suite.statusindicator.DiscreteThreshold",
+	var DiscreteThreshold = Element.extend("sap.suite.statusindicator.DiscreteThreshold",
 		{
 			metadata: {
 				library: "sap.suite.statusindicator",
@@ -48,5 +47,4 @@ sap.ui.define([
 		});
 
 	return DiscreteThreshold;
-
 });

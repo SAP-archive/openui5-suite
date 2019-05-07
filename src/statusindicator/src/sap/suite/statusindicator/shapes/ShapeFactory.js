@@ -18,9 +18,8 @@ sap.ui.define([
 	 *
 	 * @extends sap.ui.base.Object
 	 *
-	 * @constructor
 	 * @private
-	 * @since 1.60.0
+	 * @since 1.66
 	 * @alias sap.suite.statusindicator.shapes.ShapeFactory
 	 */
 	var ShapeFactory = BaseObject.extend("sap.suite.statusindicator.shapes.ShapeFactory");
@@ -61,5 +60,4 @@ sap.ui.define([
 	};
 
 	return ShapeFactory;
-
 });

@@ -14,7 +14,7 @@ sap.ui.define([
 	var svgElem = document.createElement("svg");
 	svgElem.id = "svg-container";
 	svgElem.version = "1.1";
-	svgElem.xlmns = "http://www.w3.org/2000/svg";
+	svgElem.xmlns = "http://www.w3.org/2000/svg";
 	document.body.appendChild(svgElem);
 
 	var FillingType = library.FillingType;

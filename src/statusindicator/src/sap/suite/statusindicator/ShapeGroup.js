@@ -5,12 +5,12 @@
 /*global performance */
 
 sap.ui.define([
-	"sap/ui/core/Control",
+	"sap/ui/core/Element",
 	"sap/ui/core/Core",
 	"sap/ui/core/Configuration",
 	"sap/suite/statusindicator/util/ProgressHandler",
 	"sap/base/Log"
-], function (Control, Core, Configuration, ProgressHandler, Log) {
+], function (Element, Core, Configuration, ProgressHandler, Log) {
 	"use strict";
 
 	/**
@@ -22,18 +22,17 @@ sap.ui.define([
 	 * @class
 	 * Group of shapes that display status indicator value. Shapes in the group are filled in parallel, actual
 	 * animation might depend on particular shape setting.
-	 * @extends sap.ui.core.Control
+	 * @extends sap.ui.core.Element
 	 *
 	 * @author SAP SE
 	 * @version ${version}
-	 * @since 1.50
+	 * @since 1.66
 	 *
-	 * @constructor
 	 * @public
 	 * @alias sap.suite.statusindicator.ShapeGroup
 	 * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
 	 */
-	var ShapeGroup = Control.extend("sap.suite.statusindicator.ShapeGroup",
+	var ShapeGroup = Element.extend("sap.suite.statusindicator.ShapeGroup",
 		/** @lends sap.suite.statusindicator.ShapeGroup.prototype */
 		{
 			metadata: {
@@ -212,5 +211,4 @@ sap.ui.define([
 	};
 
 	return ShapeGroup;
-
 });

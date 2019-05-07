@@ -1,6 +1,6 @@
 {
 	"name": "@openui5/sap.suite.testsuite",
-	"version": "1.64.0-SNAPSHOT",
+	"version": "1.66.0-SNAPSHOT",
 	"description": "TestSuite for Suite Library",
 	"author": "SAP SE (https://www.sap.com)",
 	"license": "Apache-2.0",
@@ -24,7 +24,6 @@
 		"@openui5/sap.uxap": "latest",
 		"@openui5/themelib_sap_belize": "latest",
 		"@openui5/sap.ui.table": "latest",
-		"@openui5/sap.suite.statusindicator": "1.64.0-SNAPSHOT",
-		"@openui5/sap.suite.controls": "1.64.0-SNAPSHOT"
+		"@openui5/sap.suite.statusindicator": "1.66.0-SNAPSHOT"
 	}
 }

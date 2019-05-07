@@ -3,9 +3,9 @@
  */
 
 sap.ui.define([
-	"sap/ui/core/Control",
+	"sap/ui/core/Element",
 	"sap/base/Log"
-], function (Control, Log) {
+], function (Element, Log) {
 	"use strict";
 
 	/**
@@ -16,18 +16,17 @@ sap.ui.define([
 	 *
 	 * @class
 	 * Filling options for an SVG shape included in a custom shape.
-	 * @extends sap.ui.core.Control
+	 * @extends sap.ui.core.Element
 	 *
 	 * @author SAP SE
 	 * @version ${version}
-	 * @since 1.50
+	 * @since 1.66
 	 *
-	 * @constructor
 	 * @public
 	 * @alias sap.suite.statusindicator.FillingOption
 	 * @ui5-metamodel This control/element will also be described in the UI5 (legacy) design time metamodel.
 	 */
-	var FillingOption = Control.extend("sap.suite.statusindicator.FillingOption",
+	var FillingOption = Element.extend("sap.suite.statusindicator.FillingOption",
 		/** @lends sap.suite.statusindicator.Control.prototype */
 		{
 			metadata: {

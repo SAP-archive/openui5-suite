@@ -2,8 +2,6 @@
  * ${copyright}
  */
 
- /* globals Promise:true */
-
 sap.ui.define([], function () {
 	"use strict";
 
@@ -72,4 +70,4 @@ sap.ui.define([], function () {
 	};
 
 	return ProgressHandler;
-}, true);
+});

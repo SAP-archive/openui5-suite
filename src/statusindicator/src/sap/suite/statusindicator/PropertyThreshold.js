@@ -3,9 +3,9 @@
  */
 
 sap.ui.define([
-	"sap/ui/core/Control",
+	"sap/ui/core/Element",
 	"sap/suite/statusindicator/util/ThemingUtil"
-], function (Control, ThemingUtil) {
+], function (Element, ThemingUtil) {
 	"use strict";
 
 	/**
@@ -17,18 +17,17 @@ sap.ui.define([
 	 * @class
 	 * Property threshold defines how the shapes included in the status indicator should be filled
 	 * when the status indicator's percentage value is below the given threshold.
-	 * @extends sap.ui.core.Control
+	 * @extends sap.ui.core.Element
 	 *
 	 * @author SAP SE
 	 * @version ${version}
-	 * @since 1.50
+	 * @since 1.66
 	 *
-	 * @constructor
 	 * @public
 	 * @alias sap.suite.statusindicator.PropertyThreshold
 	 * @ui5-metamodel This control/element will also be described in the UI5 (legacy) design time metamodel.
 	 */
-	var PropertyThreshold = Control.extend("sap.suite.statusindicator.PropertyThreshold",
+	var PropertyThreshold = Element.extend("sap.suite.statusindicator.PropertyThreshold",
 		{
 			metadata: {
 				library: "sap.suite.statusindicator",
@@ -61,5 +60,4 @@ sap.ui.define([
 	};
 
 	return PropertyThreshold;
-
 });

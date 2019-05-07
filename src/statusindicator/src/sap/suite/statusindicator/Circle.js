@@ -21,9 +21,8 @@ sap.ui.define([
 	 *
 	 * @author SAP SE
 	 * @version ${version}
-	 * @since 1.50
+	 * @since 1.66
 	 *
-	 * @constructor
 	 * @public
 	 * @alias sap.suite.statusindicator.Circle
 	 * @ui5-metamodel This control/element will also be described in the UI5 (legacy) design time metamodel

@@ -5,7 +5,10 @@
 /**
  * Initialization Code and shared classes of library sap.suite.statusindicator.
  */
-sap.ui.define([], function () {
+sap.ui.define([
+	"sap/ui/core/library", // library dependency
+	"sap/m/library" // library dependency
+], function () {
 	"use strict";
 
 	/**
@@ -19,7 +22,7 @@ sap.ui.define([], function () {
 	// delegate further initialization of this library to the Core
 	sap.ui.getCore().initLibrary({
 		name: "sap.suite.statusindicator",
-		dependencies: ["sap.ui.core"], // lazy also to sap.m since controls are used!
+		dependencies: ["sap.ui.core", "sap.m"],
 		types: [
 			"sap.suite.statusindicator.FillingType",
 			"sap.suite.statusindicator.FillingDirectionType",
@@ -30,9 +33,21 @@ sap.ui.define([], function () {
 		],
 		interfaces: [],
 		controls: [
-			"sap.suite.statusindicator.Example"
+			"sap.suite.statusindicator.Circle",
+			"sap.suite.statusindicator.CustomShape",
+			"sap.suite.statusindicator.LibraryShape",
+			"sap.suite.statusindicator.Path",
+			"sap.suite.statusindicator.Rectangle",
+			"sap.suite.statusindicator.Shape",
+			"sap.suite.statusindicator.SimpleShape",
+			"sap.suite.statusindicator.StatusIndicator"
 		],
-		elements: [],
+		elements: [
+			"sap.suite.statusindicator.DiscreteThreshold",
+			"sap.suite.statusindicator.FillingOption",
+			"sap.suite.statusindicator.PropertyThreshold",
+			"sap.suite.statusindicator.ShapeGroup"
+		],
 		noLibraryCSS: false,
 		version: "${version}"
 	});

@@ -32,6 +32,10 @@ sap.ui.define([
 		var sMaskId = oControl._buildIdString(oControl.getId(), "mask");
 
 		oRm.openStart("svg", oControl); //Root
+		if (oRm.controlData) {
+			// use older API until it gets propagated to npm
+			oRm.controlData(oControl);
+		}
 		oRm.attr("xlmns", "http://www.w3.org/2000/svg");
 
 		var sInternalViewBox = oControl._getInternalViewBox();
@@ -160,4 +164,4 @@ sap.ui.define([
 
 	return SimpleShapeRenderer;
 
-}, true);
+});

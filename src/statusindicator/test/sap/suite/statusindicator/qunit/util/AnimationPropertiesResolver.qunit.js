@@ -7,14 +7,15 @@ sap.ui.define([
 	"sap/suite/statusindicator/DiscreteThreshold",
 	"sap/ui/Device",
 	"sap/suite/statusindicator/util/ThemingUtil",
-	"sap/m/ValueColor",
+	"sap/m/library",
 	"sap/ui/thirdparty/sinon",
 	"sap/ui/thirdparty/sinon-qunit"
 ], function (AnimationPropertiesResolver, StatusIndicator, ShapeGroup, Rectangle, PropertyThreshold,
-             DiscreteThreshold, Device, ThemingUtil, ValueColor, sinon) {
+             DiscreteThreshold, Device, ThemingUtil, mLibrary, sinon) {
 	"use strict";
 
 	var oSandbox = sinon.sandbox.create();
+	var ValueColor = mLibrary.ValueColor;
 
 	function createStubRenderer() {
 		return {

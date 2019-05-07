@@ -12,20 +12,21 @@ sap.ui.define([
 	"sap/suite/statusindicator/DiscreteThreshold",
 	"./Utils",
 	"sap/suite/statusindicator/util/ThemingUtil",
-	"sap/m/ValueColor",
+	"sap/m/library",
 	"sap/base/Log",
 	"sap/ui/thirdparty/sinon",
 	"sap/ui/thirdparty/sinon-qunit",
 	"sap/ui/qunit/utils/createAndAppendDiv"
 ], function (Core, library, StatusIndicator, ShapeGroup, Rectangle, Circle, CustomShape, FillingType, AnimationPropertiesResolver,
-						 PropertyThreshold, DiscreteThreshold, Utils, ThemingUtil, ValueColor, Log, sinon, sinon_qunit, createAndAppendDiv) {
+						 PropertyThreshold, DiscreteThreshold, Utils, ThemingUtil, mLibrary, Log, sinon, sinon_qunit, createAndAppendDiv) {
 	"use strict";
 
 	createAndAppendDiv("content");
 
 	var oSandbox;
-	var oSizeType = library.SizeType;
-	var oLabelPositionType = library.LabelPositionType;
+	var SizeType = library.SizeType;
+	var LabelPositionType = library.LabelPositionType;
+	var ValueColor = mLibrary.ValueColor;
 	var oCore = sap.ui.getCore();
 
 	function render(statusIndicator) {
@@ -63,8 +64,7 @@ sap.ui.define([
 
 		render(this.statusIndicator);
 
-		var rootId = this.statusIndicator.getId();
-		var $rootNode = jQuery.sap.byId(rootId);
+		var $rootNode = this.statusIndicator.$();
 
 		assert.ok($rootNode.is("div"), "It is a div.");
 
@@ -202,7 +202,7 @@ sap.ui.define([
 
 	QUnit.test("Test setting the S size of status indicator", function (assert) {
 		// Given
-		this.statusIndicator.setSize(oSizeType.Small);
+		this.statusIndicator.setSize(SizeType.Small);
 
 		// When
 		render(this.statusIndicator);
@@ -216,7 +216,7 @@ sap.ui.define([
 
 	QUnit.test("Test setting the M size of status indicator", function (assert) {
 		// Given
-		this.statusIndicator.setSize(oSizeType.Medium);
+		this.statusIndicator.setSize(SizeType.Medium);
 
 		// When
 		render(this.statusIndicator);
@@ -231,7 +231,7 @@ sap.ui.define([
 
 	QUnit.test("Test setting the L size of status indicator", function (assert) {
 		// Given
-		this.statusIndicator.setSize(oSizeType.Large);
+		this.statusIndicator.setSize(SizeType.Large);
 
 		// When
 		render(this.statusIndicator);
@@ -245,7 +245,7 @@ sap.ui.define([
 
 	QUnit.test("Test setting the XL size of status indicator", function (assert) {
 		// Given
-		this.statusIndicator.setSize(oSizeType.ExtraLarge);
+		this.statusIndicator.setSize(SizeType.ExtraLarge);
 
 		// When
 		render(this.statusIndicator);
@@ -258,7 +258,7 @@ sap.ui.define([
 	});
 
 	QUnit.test("Test the S size of label", function (assert) {
-		this.statusIndicator.setSize(oSizeType.Small);
+		this.statusIndicator.setSize(SizeType.Small);
 		this.statusIndicator.setShowLabel(true);
 
 		render(this.statusIndicator);
@@ -271,7 +271,7 @@ sap.ui.define([
 	});
 
 	QUnit.test("Test the M size of label", function (assert) {
-		this.statusIndicator.setSize(oSizeType.Medium);
+		this.statusIndicator.setSize(SizeType.Medium);
 		this.statusIndicator.setShowLabel(true);
 
 		render(this.statusIndicator);
@@ -284,7 +284,7 @@ sap.ui.define([
 	});
 
 	QUnit.test("Test the L size of label", function (assert) {
-		this.statusIndicator.setSize(oSizeType.Large);
+		this.statusIndicator.setSize(SizeType.Large);
 		this.statusIndicator.setShowLabel(true);
 
 		render(this.statusIndicator);
@@ -297,7 +297,7 @@ sap.ui.define([
 	});
 
 	QUnit.test("Test the XL size of label", function (assert) {
-		this.statusIndicator.setSize(oSizeType.ExtraLarge);
+		this.statusIndicator.setSize(SizeType.ExtraLarge);
 		this.statusIndicator.setShowLabel(true);
 
 		render(this.statusIndicator);
@@ -339,7 +339,7 @@ sap.ui.define([
 	QUnit.test("Test label on the right side", function (assert) {
 		this.statusIndicator.setShowLabel(true);
 		this.statusIndicator.setValue(25);
-		this.statusIndicator.setLabelPosition(oLabelPositionType.Right);
+		this.statusIndicator.setLabelPosition(LabelPositionType.Right);
 
 		render(this.statusIndicator);
 
@@ -354,7 +354,7 @@ sap.ui.define([
 	QUnit.test("Test label on the top side", function (assert) {
 		this.statusIndicator.setShowLabel(true);
 		this.statusIndicator.setValue(25);
-		this.statusIndicator.setLabelPosition(oLabelPositionType.Top);
+		this.statusIndicator.setLabelPosition(LabelPositionType.Top);
 
 		render(this.statusIndicator);
 
@@ -369,7 +369,7 @@ sap.ui.define([
 	QUnit.test("Test label on the bottom side", function (assert) {
 		this.statusIndicator.setShowLabel(true);
 		this.statusIndicator.setValue(25);
-		this.statusIndicator.setLabelPosition(oLabelPositionType.Bottom);
+		this.statusIndicator.setLabelPosition(LabelPositionType.Bottom);
 
 		render(this.statusIndicator);
 
