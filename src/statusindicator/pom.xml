@@ -16,7 +16,7 @@
 	<parent>
 		<groupId>com.sap.openui5.suite</groupId>
 		<artifactId>reactor</artifactId>
-		<version>1.66.0-SNAPSHOT</version>
+		<version>1.67.0-SNAPSHOT</version>
 		<relativePath>../../pom.xml</relativePath>
 	</parent>
 
@@ -48,6 +48,9 @@
 
 		<!-- enable eslint validation -->
 		<sap.ui5.eslint.skip.validation>false</sap.ui5.eslint.skip.validation>
+
+		<!-- disable build failure -->
+		<sap.ui5.eslint.failonerror>false</sap.ui5.eslint.failonerror>
 
 	</properties>
 
