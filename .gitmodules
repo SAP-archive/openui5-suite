@@ -1,0 +1,4 @@
+[submodule "openui5"]
+	path = openui5
+	url = https://github.com/SAP/openui5.git
+	branch = master

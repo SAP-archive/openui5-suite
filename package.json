@@ -2,6 +2,9 @@
 	"name": "sap.suite",
 	"version": "1.66.0-SNAPSHOT",
 	"description": "Suite Library",
+	"scripts": {
+		"preinstall": "git submodule update --init"
+	},
 	"devDependencies": {
 		"@ui5/server": "^1.0.0"
 	},
@@ -15,8 +18,8 @@
 	],
 	"private": true,
 	"workspaces": [
-		"src/controls",
 		"src/statusindicator",
-		"testsuite"
+		"testsuite",
+		"openui5/src/!(testsuite-utils)"
 	]
 }
