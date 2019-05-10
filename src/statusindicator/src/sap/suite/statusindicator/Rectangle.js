@@ -65,7 +65,7 @@ sap.ui.define([
 		});
 
 	Rectangle.prototype._renderSimpleShapeElement = function (oRm, mAttributes) {
-		oRm.voidStart("rect");
+		oRm.openStart("rect");
 		this._renderElementAttributes(oRm, mAttributes);
 		oRm.attr("x", this.getX());
 		oRm.attr("y", this.getY());
@@ -75,7 +75,8 @@ sap.ui.define([
 		oRm.attr("ry", this.getRy());
 		oRm.attr("stroke-width", this.getStrokeWidth());
 		oRm.attr("stroke", this._getCssStrokeColor());
-		oRm.voidEnd();
+		oRm.openEnd();
+		oRm.close("rect");
 	};
 
 	return Rectangle;

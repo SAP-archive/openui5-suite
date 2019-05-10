@@ -45,12 +45,13 @@ sap.ui.define([
 		});
 
 	Path.prototype._renderSimpleShapeElement = function (oRm, mAttributes) {
-		oRm.voidStart("path");
+		oRm.openStart("path");
 		this._renderElementAttributes(oRm, mAttributes);
 		oRm.attr("d", this.getD());
 		oRm.attr("stroke-width", this.getStrokeWidth());
 		oRm.attr("stroke", this._getCssStrokeColor());
-		oRm.voidEnd();
+		oRm.openEnd();
+		oRm.close("path");
 	};
 
 	return Path;

@@ -92,15 +92,17 @@ sap.ui.define([
 		oRm.openEnd(); //GradientElement
 
 		var fOffset = oControl._getDisplayedGradientOffset(iDisplayedValue);
-		oRm.voidStart(STOP_ID); //StopColor
+		oRm.openStart(STOP_ID); //StopColor
 		oRm.attr("offset", fOffset);
 		oRm.attr("stop-color", "white");
-		oRm.voidEnd(); //StopColor
+		oRm.openEnd(); //StopColor
+		oRm.close(STOP_ID);
 
-		oRm.voidStart(STOP_ID); //StopTransparent
+		oRm.openStart(STOP_ID); //StopTransparent
 		oRm.attr("offset", fOffset);
 		oRm.attr("stop-color", "transparent");
-		oRm.voidEnd(); //StopTransparent
+		oRm.openEnd(); //StopTransparent
+		oRm.close(STOP_ID);
 
 		oRm.close(sTagName); //GradientElement
 	};
@@ -118,7 +120,7 @@ sap.ui.define([
 				fill: "url(#" + oControl._buildIdString(oControl.getId(), GRADIENT_ID) + ")"
 			});
 		} else {
-			oRm.voidStart("polygon");
+			oRm.openStart("polygon");
 			oRm.attr("id", oControl._buildIdString(oControl.getId(), "polygon"));
 			oRm.attr("fill", "white");
 			// calculating polygon's points depends on bounding box. But bounding box is
@@ -126,7 +128,8 @@ sap.ui.define([
 			// therefore we cant render it on initial with specified value.
 			// It is easily possible to compute it without bounding box for rectangle/circle,
 			// but almost impossible for path
-			oRm.voidEnd();
+			oRm.openEnd();
+			oRm.close("polygon");
 		}
 
 		oRm.close("mask"); //Mask

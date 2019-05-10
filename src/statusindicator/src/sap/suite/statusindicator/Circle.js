@@ -56,14 +56,15 @@ sap.ui.define([
 		});
 
 	Circle.prototype._renderSimpleShapeElement = function (oRm, mAttributes) {
-		oRm.voidStart("circle");
+		oRm.openStart("circle");
 		this._renderElementAttributes(oRm, mAttributes);
 		oRm.attr("cx", this.getCx());
 		oRm.attr("cy", this.getCy());
 		oRm.attr("r", this.getR());
 		oRm.attr("stroke-width", this.getStrokeWidth());
 		oRm.attr("stroke", this._getCssStrokeColor());
-		oRm.voidEnd();
+		oRm.openEnd();
+		oRm.close("circle");
 	};
 
 	return Circle;

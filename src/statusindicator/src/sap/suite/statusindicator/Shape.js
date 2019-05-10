@@ -493,7 +493,21 @@ sap.ui.define([
 
 	Shape.prototype._renderElementAttributes = function (oRm, mAttributes) {
 		Object.keys(mAttributes).forEach(function (sKey) {
-			oRm.attr(sKey, mAttributes[sKey]);
+			var aStyleParts,
+				sValue = mAttributes[sKey];
+			switch(sKey) {
+				case "class":
+					oRm.class(sValue);
+					break;
+				case "style":
+					sValue.split(";").forEach(function (sValuePair) {
+						var aPair = sValuePair.split(":");
+						oRm.style(aPair[0], aPair[1]);
+					});
+					break;
+				default:
+					oRm.attr(sKey, sValue);
+			}
 		});
 		if (this.aCustomStyleClasses) {
 			this.aCustomStyleClasses.forEach(function (sClass) {
