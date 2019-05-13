@@ -10,7 +10,7 @@ sap.ui.define([
 
 	QUnit.test("Not instantiable", function (assert) {
 		try {
-			new ThemingUtil();
+			new ThemingUtil(); // eslint-disable-line no-new
 			assert.fail("ThemingUtil should not be instantiable.");
 		} catch (ex) {
 			assert.ok("ThemingUtil is not instantiable.");

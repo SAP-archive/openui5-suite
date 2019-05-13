@@ -6,7 +6,8 @@
 		"preinstall": "git submodule update --init"
 	},
 	"devDependencies": {
-		"@ui5/server": "^1.0.0"
+		"@ui5/server": "^1.0.0",
+		"eslint": "^5.16.0"
 	},
 	"author": "SAP SE (https://www.sap.com)",
 	"license": "Apache-2.0",
