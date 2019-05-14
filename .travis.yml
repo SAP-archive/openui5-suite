@@ -9,7 +9,8 @@ env:
   - GH_EMAIL="vaclav.vopenka@sap.com"
   - REPO="openui5-suite"
   - GH_REPO="github.com/${GH_ORG}/${REPO}.git"
-install: true
+install:
+  - yarn install
 jobs:
   include:
     - stage: eslint
