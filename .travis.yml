@@ -12,9 +12,9 @@ env:
 install: true
 jobs:
   include:
-    - stage: test
-      script: 
-        - npm test
+    - stage: eslint
+      script:
+        - npm run-script eslint
     - stage: deploy
       if: branch = master AND type = push
       after_success:

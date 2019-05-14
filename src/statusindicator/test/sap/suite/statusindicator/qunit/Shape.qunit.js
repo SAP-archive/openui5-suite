@@ -26,7 +26,9 @@ sap.ui.define([
 		},
 		afterEach: function () {
 			this.sandbox.verifyAndRestore();
-			this.oShape && this.oShape.destroy();
+			if (this.oShape) {
+				this.oShape.destroy();
+			}
 		}
 	});
 

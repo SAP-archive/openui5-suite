@@ -1,6 +1,6 @@
 {
 	"name": "sap.suite",
-	"version": "1.66.0-SNAPSHOT",
+	"version": "1.67.0-SNAPSHOT",
 	"description": "Suite Library",
 	"scripts": {
 		"preinstall": "git submodule update --init"
@@ -17,6 +17,9 @@
 		"ui5",
 		"suite"
 	],
+	"scripts": {
+		"eslint": "./node_modules/.bin/eslint src"
+	},
 	"private": true,
 	"workspaces": [
 		"src/statusindicator",

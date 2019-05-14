@@ -42,7 +42,9 @@ sap.ui.define(
 		return Controller.extend("sap.suite.statusindicator.sample.StatusIndicatorSizes.App", {
 			_setCustomShapeDefinition:  function (sShapeId, sSvg) {
 				var oCustomShape = this.getView().byId(sShapeId);
-				oCustomShape && oCustomShape.setDefinition(sSvg);
+				if (oCustomShape) {
+					oCustomShape.setDefinition(sSvg);
+				}
 			},
 			onInit: function() {
 				var aIndicators = this.getAllStatusIndicators();

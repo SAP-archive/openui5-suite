@@ -24,13 +24,6 @@
 		this.aOnPropertyThresholdChange.push(fnChangeHandler);
 	};
 
-	/**
-	 * Resolve the value for the given shape.
-	 *
-	 * @param {Shape} oShape
-	 * @param iShapeValue
-	 * @returns {int}
-	 */
 	AnimationPropertiesResolver.prototype.getValue = function (oShape, iShapeValue) {
 		var oParent = oShape.getParent();
 
@@ -69,12 +62,6 @@
 		}
 	};
 
-	/**
-	 * Returns the color that should be valid for the given shape and value
-	 *
-	 * @param oShape
-	 * @param iShapeValue
-	 */
 	AnimationPropertiesResolver.prototype.getColor = function (oShape, iShapeValue) {
 		var oParent = oShape.getParent();
 		if (oParent instanceof CustomShape) {

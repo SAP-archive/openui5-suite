@@ -5,11 +5,11 @@ sap.ui.define([
 	"sap/suite/statusindicator/FillingType",
 	"./StubsFactory",
 	"./Utils",
+	"sap/ui/qunit/utils/createAndAppendDiv",
 	"sap/ui/thirdparty/sinon",
-	"sap/ui/thirdparty/sinon-qunit",
-	"sap/ui/qunit/utils/createAndAppendDiv"
-], function (jQuery, SimpleShape, SimpleShapeRenderer, FillingType, StubsFactory, Utils, sinon, sinon_qunit,
-             createAndAppendDiv) {
+	"sap/ui/thirdparty/sinon-qunit"
+], function (jQuery, SimpleShape, SimpleShapeRenderer, FillingType, StubsFactory, Utils, createAndAppendDiv,
+             sinon) {
 	"use strict";
 
 	// add svg element to document.body
@@ -29,7 +29,9 @@ sap.ui.define([
 		},
 		afterEach: function () {
 			this.sandbox.verifyAndRestore();
-			this.oSimpleShape && this.oSimpleShape.destroy();
+			if (this.oSimpleShape) {
+				this.oSimpleShape.destroy();
+			}
 		}
 	});
 

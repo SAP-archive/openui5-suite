@@ -26,8 +26,8 @@ sap.ui.define([
 
 	/**
 	 *
-	 * @param sId
-	 * @returns {Promise}
+	 * @param {string} sId Id of the shape.
+	 * @returns {Promise} Promise which resolves to the shape.
 	 */
 	ShapeFactory.prototype.getShapeById = function (sId) {
 		var mLoadedShapes = this._getLoadedShapes(),

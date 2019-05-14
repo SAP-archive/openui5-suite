@@ -14,11 +14,11 @@ sap.ui.define([
 	"sap/suite/statusindicator/util/ThemingUtil",
 	"sap/m/library",
 	"sap/base/Log",
+	"sap/ui/qunit/utils/createAndAppendDiv",
 	"sap/ui/thirdparty/sinon",
-	"sap/ui/thirdparty/sinon-qunit",
-	"sap/ui/qunit/utils/createAndAppendDiv"
+	"sap/ui/thirdparty/sinon-qunit"
 ], function (Core, library, StatusIndicator, ShapeGroup, Rectangle, Circle, CustomShape, FillingType, AnimationPropertiesResolver,
-						 PropertyThreshold, DiscreteThreshold, Utils, ThemingUtil, mLibrary, Log, sinon, sinon_qunit, createAndAppendDiv) {
+						 PropertyThreshold, DiscreteThreshold, Utils, ThemingUtil, mLibrary, Log, createAndAppendDiv, sinon) {
 	"use strict";
 
 	createAndAppendDiv("content");

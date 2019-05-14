@@ -20,7 +20,9 @@ sap.ui.define([
 	QUnit.module("LibraryShape", {
 		afterEach: function () {
 			new ShapeFactory()._removeAllLoadedShapes();
-			this.oLibraryShape && this.oLibraryShape.destroy();
+			if (this.oLibraryShape) {
+				this.oLibraryShape.destroy();
+			}
 		}
 	});
 
@@ -60,18 +62,18 @@ sap.ui.define([
 			assert.equal(sData.replace(/\s/g,''), sCarSvg.replace(/\s/g,''), "Get correct shape");
 			fnDone1();
 
-			oShapeFactory.getShapeById("bull").then(function () {
-				assert.ok(Object.keys(new ShapeFactory()._getLoadedShapes()).length === 3, "3 shapes are loaded");
-				fnDone2();
+			return oShapeFactory.getShapeById("bull");
+		}).then(function () {
+			assert.ok(Object.keys(new ShapeFactory()._getLoadedShapes()).length === 3, "3 shapes are loaded");
+			fnDone2();
 
-				oShapeFactory.getShapeById("wrongShapeId123456789").then(function () {
-					assert.ok(false, "Shape ID 'wrongShapeId123456789' is correct");
-					fnDone3();
-				}, function (oError) {
-					assert.ok(oError, "Set wrong shape ID");
-					fnDone3();
-				});
-			});
+			return oShapeFactory.getShapeById("wrongShapeId123456789");
+		}).then(function () {
+			assert.ok(false, "Shape ID 'wrongShapeId123456789' is correct");
+			fnDone3();
+		}, function (oError) {
+			assert.ok(oError, "Set wrong shape ID");
+			fnDone3();
 		});
 
 	});

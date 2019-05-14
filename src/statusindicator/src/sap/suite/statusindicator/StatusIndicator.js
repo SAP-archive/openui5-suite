@@ -457,21 +457,15 @@ sap.ui.define([
 			}
 		}
 
-		var sValueText;
+		var sValueText, sKey;
 
 		if (sDiscreteAriaLabel) {
 			if (sPropertyAriaLabel) {
-				if (bAboveDiscrete) {
-					sValueText = oResourceBundle.getText("STATUS_INDICATOR_VALUE_ABOVE_THRESHOLD_COLOR", [iValue, sDiscreteAriaLabel, sPropertyAriaLabel]);
-				} else {
-					sValueText = oResourceBundle.getText("STATUS_INDICATOR_VALUE_BELOW_THRESHOLD_COLOR", [iValue, sDiscreteAriaLabel, sPropertyAriaLabel]);
-				}
+				sKey = bAboveDiscrete ? "STATUS_INDICATOR_VALUE_ABOVE_THRESHOLD_COLOR" : "STATUS_INDICATOR_VALUE_BELOW_THRESHOLD_COLOR";
+				sValueText = oResourceBundle.getText(sKey, [iValue, sDiscreteAriaLabel, sPropertyAriaLabel]);
 			} else {
-				if (bAboveDiscrete) {
-					sValueText = oResourceBundle.getText("STATUS_INDICATOR_VALUE_ABOVE_THRESHOLD", [iValue, sDiscreteAriaLabel]);
-				} else {
-					sValueText = oResourceBundle.getText("STATUS_INDICATOR_VALUE_BELOW_THRESHOLD", [iValue, sDiscreteAriaLabel]);
-				}
+				sKey = bAboveDiscrete ? "STATUS_INDICATOR_VALUE_ABOVE_THRESHOLD" : "STATUS_INDICATOR_VALUE_BELOW_THRESHOLD";
+				sValueText = oResourceBundle.getText(sKey, [iValue, sDiscreteAriaLabel]);
 			}
 		} else if (sPropertyAriaLabel) {
 			sValueText = oResourceBundle.getText("STATUS_INDICATOR_VALUE_COLOR", [iValue, sPropertyAriaLabel]);

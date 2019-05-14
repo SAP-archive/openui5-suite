@@ -146,7 +146,8 @@ sap.ui.define([
 	 * This method must be overridden by a child class
 	 *
 	 * @public
-	 * @returns int
+	 * @abstract
+	 * @returns {int} Currently displayed value
 	 */
 	Shape.prototype.getDisplayedValue = function () {
 		Log.fatal("Must be overridden!");
@@ -212,6 +213,8 @@ sap.ui.define([
 			case HorizontalAlignmentType.Right:
 				sResult += "Max";
 				break;
+			default:
+				throw new Error("Unknown Horizontal Type");
 		}
 		sResult += "Y";
 
@@ -225,6 +228,8 @@ sap.ui.define([
 			case VerticalAlignmentType.Bottom:
 				sResult += "Max";
 				break;
+			default:
+				throw new Error("Unknown Vertical Type");
 		}
 
 		sResult += " meet";
