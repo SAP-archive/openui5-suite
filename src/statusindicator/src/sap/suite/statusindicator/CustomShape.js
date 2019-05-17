@@ -10,9 +10,8 @@ sap.ui.define([
 	"sap/suite/statusindicator/Path",
 	"sap/suite/statusindicator/Circle",
 	"sap/suite/statusindicator/Rectangle",
-	"sap/suite/controls/util/HtmlElement",
 	"sap/base/Log"
-], function (jQuery, library, ShapeGroup, Shape, Path, Circle, Rectangle, HtmlElement, Log) {
+], function (jQuery, library, ShapeGroup, Shape, Path, Circle, Rectangle, Log) {
 	"use strict";
 
 	var FillingType = library.FillingType;
@@ -228,9 +227,7 @@ sap.ui.define([
 			case "rect":
 				this._preprocessRectangleNode($oShapeNode);
 				break;
-			case "defs":
-				this._preprocessDefinitionsNode($oShapeNode[0]);
-				break;
+			// defs removed. They were not used and I have no idea what it was supposed to do.
 			default:
 				Log.fatal("Unsupported node tag name ('" + sTagName + "')");
 		}
@@ -260,12 +257,6 @@ sap.ui.define([
 			height: Number($rectangleNode.attr("height"))
 		});
 		this._prepareShape(oRectangle, $rectangleNode);
-	};
-
-	CustomShape.prototype._preprocessDefinitionsNode = function (oDefsNode) {
-		var oDefinitionElement = new HtmlElement("defs");
-		oDefinitionElement.addChild(oDefsNode.innerHTML);
-		return oDefinitionElement;
 	};
 
 	CustomShape.prototype._setInitialValue = function (iInitialValue) {

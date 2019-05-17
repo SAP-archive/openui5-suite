@@ -498,9 +498,8 @@ sap.ui.define([
 
 	Shape.prototype._renderElementAttributes = function (oRm, mAttributes) {
 		Object.keys(mAttributes).forEach(function (sKey) {
-			var aStyleParts,
-				sValue = mAttributes[sKey];
-			switch(sKey) {
+			var sValue = mAttributes[sKey];
+			switch (sKey) {
 				case "class":
 					oRm.class(sValue);
 					break;

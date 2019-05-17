@@ -5,15 +5,11 @@ sap.ui.define([
 ], function (JSONModel, Controller, MessageToast) {
 	"use strict";
 
-	var INDICATOR_IDS = ["indicator0", "indicator1"];
-
 	return Controller.extend("sap.suite.statusindicator.sample.StatusIndicatorSemanticColors.App", {
 		valueChanged: function (oEvent) {
 			var iValue = oEvent.getParameter("value"),
 				oView = this.getView();
-			INDICATOR_IDS.forEach(function (sId) {
-				oView.byId(sId).setValue(iValue);
-			});
+			oView.byId("indicator0").setValue(iValue);
 		},
 		onElementPress: function (oEvent) {
 			MessageToast.show("press event triggered for " + oEvent.getSource().getId());

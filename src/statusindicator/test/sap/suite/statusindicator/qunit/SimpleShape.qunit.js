@@ -77,10 +77,11 @@ sap.ui.define([
 
 		this.sandbox.stub(this.oSimpleShape, "_renderSimpleShapeElement", function (oRm, mAttributes) {
 			// having own dummy implementation of simple shape for testing cases only should be better then just stubbing parts
-			oRm.voidStart("rect");
+			oRm.openStart("rect");
 			this._renderElementAttributes(oRm, mAttributes);
 			oRm.attr("stroke-width", 2);
-			oRm.voidEnd();
+			oRm.openEnd();
+			oRm.close("rect");
 		});
 
 		this.oSimpleShape.placeAt("content");
@@ -110,9 +111,10 @@ sap.ui.define([
 
 		this.sandbox.stub(this.oSimpleShape, "_renderSimpleShapeElement", function (oRm, mAttributes) {
 			// having own dummy implementation of simple shape for testing cases only should be better then just stubbing parts
-			oRm.voidStart("rect");
+			oRm.openStart("rect");
 			this._renderElementAttributes(oRm, mAttributes);
-			oRm.voidEnd();
+			oRm.openEnd();
+			oRm.close("rect");
 		});
 
 		this.oSimpleShape.placeAt("content");
@@ -194,9 +196,10 @@ sap.ui.define([
 		this.oSimpleShape._injectAnimationPropertiesResolver(oAnimationPropertiesResolver);
 
 		this.sandbox.stub(this.oSimpleShape, "_renderSimpleShapeElement", function (oRm, mAttributes) {
-			oRm.voidStart("rect");
+			oRm.openStart("rect");
 			this._renderElementAttributes(oRm, mAttributes);
-			oRm.voidEnd();
+			oRm.openEnd();
+			oRm.close("rect");
 		});
 
 
@@ -229,9 +232,10 @@ sap.ui.define([
 			this.oSimpleShape._injectAnimationPropertiesResolver(oAnimationPropertiesResolver);
 
 			this.sandbox.stub(this.oSimpleShape, "_renderSimpleShapeElement", function (oRm, mAttributes) {
-				oRm.voidStart("rect");
+				oRm.openStart("rect");
 				this._renderElementAttributes(oRm, mAttributes);
-				oRm.voidEnd();
+				oRm.openEnd();
+				oRm.close("rect");
 			});
 
 			this.oSimpleShape.placeAt("svg-container", "last");
@@ -266,9 +270,10 @@ sap.ui.define([
 		this.oSimpleShape = new SimpleShape();
 
 		this.sandbox.stub(this.oSimpleShape, "_renderSimpleShapeElement", function (oRm, mAttributes) {
-			oRm.voidStart("rect");
+			oRm.openStart("rect");
 			this._renderElementAttributes(oRm, mAttributes);
-			oRm.voidEnd();
+			oRm.openEnd();
+			oRm.close("rect");
 		});
 
 

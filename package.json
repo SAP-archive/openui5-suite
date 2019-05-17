@@ -2,9 +2,6 @@
 	"name": "sap.suite",
 	"version": "1.67.0-SNAPSHOT",
 	"description": "Suite Library",
-	"scripts": {
-		"preinstall": "git submodule update --init"
-	},
 	"devDependencies": {
 		"@ui5/server": "^1.0.0",
 		"eslint": "^5.16.0"
@@ -18,7 +15,9 @@
 		"suite"
 	],
 	"scripts": {
-		"eslint": "./node_modules/.bin/eslint src"
+		"eslint": "./node_modules/.bin/eslint src",
+		"preinstall": "git submodule update --init",
+		"updateSubmodules": "git submodule update --recursive --remote"
 	},
 	"private": true,
 	"workspaces": [
