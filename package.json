@@ -16,8 +16,8 @@
 	],
 	"scripts": {
 		"eslint": "./node_modules/.bin/eslint src",
-		"preinstall": "git submodule update --init",
-		"updateSubmodules": "git submodule update --recursive --remote"
+		"preinstall": "git submodule update --init --remote --checkout --force --depth 1",
+		"test": "echo \"No tests yet.\""
 	},
 	"private": true,
 	"workspaces": [
