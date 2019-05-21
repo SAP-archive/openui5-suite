@@ -19,7 +19,7 @@ sap.ui.define([
 	 * @extends sap.ui.base.Object
 	 *
 	 * @private
-	 * @since 1.66
+	 * @since 1.67
 	 * @alias sap.suite.statusindicator.shapes.ShapeFactory
 	 */
 	var ShapeFactory = BaseObject.extend("sap.suite.statusindicator.shapes.ShapeFactory");

@@ -21,7 +21,7 @@ sap.ui.define([
 	 *
 	 * @author SAP SE
 	 * @version ${version}
-	 * @since 1.66
+	 * @since 1.67
 	 *
 	 * @public
 	 * @alias sap.suite.statusindicator.PropertyThreshold

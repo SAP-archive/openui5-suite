@@ -15,6 +15,9 @@
 		<dependency>
 			<libraryName>sap.ui.core</libraryName>
 		</dependency>
+		<dependency>
+			<libraryName>sap.m</libraryName>
+		</dependency>
 	</dependencies>
 
 	<appData>
@@ -30,6 +33,11 @@
 		<documentation xmlns="http://www.sap.com/ui5/buildext/documentation"
 					   indexUrl="../../../../test-resources/sap/suite/statusindicator/demokit/docuindex.json"
 					   resolve="lib" />
+
+		<ownership xmlns="http://www.sap.com/ui5/buildext/ownership">
+			<!-- default component for library, embedded text as a shortcut for <name>text</name> -->
+			<component>CA-UI5-SC</component>
+		</ownership>
 	</appData>
 
 </library>
