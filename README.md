@@ -1,4 +1,4 @@
-![openui5](http://openui5.org/images/OpenUI5_new_big_side.png)
+![Logo](https://raw.githubusercontent.com/wiki/SAP/openui5-suite/images/suite_controls_logo_1378x500.gif)
 
 # Suite Library for OpenUI5
 
