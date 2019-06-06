@@ -741,6 +741,7 @@ sap.ui.define([
 	QUnit.test("Basic animation test with custom shapes", function (assert) {
 		// semantic colors are resolved in dependence of theme. Current tests count with sap_belize theme
 		var that = this;
+		var clock = sinon.useFakeTimers();
 		var oCustomShape1 = new CustomShape({
 			definition: "<svg>" +
 			"<rect x='2' y='3' width='5' height='7'></rect>" +
@@ -787,7 +788,9 @@ sap.ui.define([
 
 		this.statusIndicator.placeAt("content");
 		oCore.applyChanges();
+		clock.tick(1000);
 		this.statusIndicator.setValue(100);
+		clock.tick(1000);
 
 		assert.equal(oCustomShape1.$()[0].childNodes[0].childNodes[1].getAttribute("stroke"), ThemingUtil.resolveColor(ValueColor.Neutral));
 		return this.statusIndicator._oCurrentAnimationPromise.then(function () {
@@ -797,10 +800,12 @@ sap.ui.define([
 
 			assert.equal(oCustomShape1.$()[0].childNodes[0].childNodes[1].getAttribute("fill"), ThemingUtil.resolveColor(ValueColor.Good));
 			that.statusIndicator.setValue(50);
+			clock.tick(1000);
 
 			return that.statusIndicator._oCurrentAnimationPromise;
 		}).then(function () {
 			assert.equal(oCustomShape1.$()[0].childNodes[0].childNodes[1].getAttribute("fill"), ThemingUtil.resolveColor(ValueColor.Critical));
+			clock.restore();
 		});
 	});
 
@@ -811,6 +816,7 @@ sap.ui.define([
 			"</svg>",
 			strokeColor: "Neutral"
 		});
+		var clock = sinon.useFakeTimers();
 		var oUpdateDomSpy = oSandbox.spy(oCustomShape1, "_updateDom");
 
 		this.statusIndicator.addGroup(
@@ -821,8 +827,10 @@ sap.ui.define([
 
 		this.statusIndicator.placeAt("content");
 		oCore.applyChanges();
+		clock.tick(1000);
 
 		this.statusIndicator.setValue(100);
+		clock.tick(1000);
 
 		return this.statusIndicator._oCurrentAnimationPromise.then(function checkStateAfterAnimation() {
 			var aValueSerie = oUpdateDomSpy.args.map(function (oItem) {
@@ -833,6 +841,7 @@ sap.ui.define([
 			assert.ok(aValueSerie.reduce(isRisingReducer, {result: true}).result, "Values passed in _updateDom are rising");
 			assert.equal(aValueSerie[0], 0);
 			assert.equal(aValueSerie[aValueSerie.length - 1], 100);
+			clock.restore();
 		});
 	});
 
@@ -884,6 +893,7 @@ sap.ui.define([
 			strokeWidth: 3,
 			definition: "<svg><circle data-shape-id='customShape-circle' cx='50' cy='50' r='40' /></svg>"
 		});
+		var clock = sinon.useFakeTimers();
 		this.statusIndicator.addGroup(new ShapeGroup({
 			shapes: oCustomShape
 		}));
@@ -892,6 +902,7 @@ sap.ui.define([
 
 		this.statusIndicator.placeAt("content");
 		oCore.applyChanges();
+		clock.tick(1000);
 
 		return this.statusIndicator._oCurrentAnimationPromise.then(function () {
 			var $customShape = oCustomShape.$()[0],
@@ -901,6 +912,7 @@ sap.ui.define([
 			assert.equal(aStopNodes.childNodes[1].getAttribute("offset"), 0.5, "Offset should be 0.5");
 			assert.equal(aStopNodes.childNodes[0].getAttribute("stop-color"), "white", "First stop color should be white.");
 			assert.equal(aStopNodes.childNodes[1].getAttribute("stop-color"), "transparent", "Second stop color should be transparent.");
+			clock.restore();
 		});
 	});
 
