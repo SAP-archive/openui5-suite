@@ -1,6 +1,6 @@
 {
 	"name": "sap.suite",
-	"version": "1.68.0-SNAPSHOT",
+	"version": "1.67.0-SNAPSHOT",
 	"description": "Suite Library",
 	"devDependencies": {
 		"@ui5/server": "^1.0.0",
