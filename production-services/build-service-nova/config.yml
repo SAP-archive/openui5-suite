@@ -10,4 +10,4 @@ templates:
 
 variants:
 - Variant: sonar
-  args: [ '--buildplugin-option', 'options="-Psonar sonar:sonar  -Dsonar.branch=dev  -Dsonar.profile=SAPDefaultProfile_1_4_6"']
+  args: [ '--buildplugin-option', 'options="-Psonar sonar:sonar  -Dsonar.branch=dev  -Dsonar.profile=SAPDefaultProfile_1_4_6 -Dsonar.host.url=http://sonarci.wdf.sap.corp:8080/sonar"']
