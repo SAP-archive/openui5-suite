@@ -1,3 +1,9 @@
+![](https://img.shields.io/badge/STATUS-NOT%20CURRENTLY%20MAINTAINED-red.svg?longCache=true&style=flat)
+
+# Important Notice
+We have decided to stop the maintenance of this public GitHub repository.
+
+
 ![Logo](https://raw.githubusercontent.com/wiki/SAP/openui5-suite/images/suite_controls_logo_1378x500.gif)
 
 # Suite Library for OpenUI5
